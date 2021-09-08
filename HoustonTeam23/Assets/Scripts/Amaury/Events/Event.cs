@@ -7,9 +7,8 @@ public class Event : MonoBehaviour {
     public bool value;
     private float timer;
     public float maxTimer;
-
-    public int counter;
-    public int maxCounter;
+    public int percentage;
+    //public int counter,maxCounter; // ne sert que pour un event 
 
     void Update() {
         if(value) {

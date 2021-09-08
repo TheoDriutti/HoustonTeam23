@@ -2,28 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Events : MonoBehaviour {
+public class EventManager : MonoBehaviour {
 
 /* Events */
     public Event freezeEvent;
     public Event horizontalEvent;
     public Event verticalEvent;
-    public Event delayEvent;
-    public Event flipCameraEvent;
+    public DelayEvent delayEvent;
+    public FlipCameraEvent flipCameraEvent;
     public Event tapEvent;
+    public Event inertiaEvent;
 
 /* Movement */
-    public float speed,flipSpeed;
-    private float x,y;   
+    public float speed;
+    private float x,y,originalSpeed;   
 
-/* Delay Event */
-    private float lastHInput,lastVInput; 
-    private float hDelayTimer,vDelayTimer;
-    public float hMaxDelayTimer,vMaxDelayTimer;
-
-/* Flip Camera */
-    private bool flipRotate;
-    private GameObject camera;
 
 /* Incibility */
     public bool hurt;
@@ -37,7 +30,8 @@ public class Events : MonoBehaviour {
     public KeyCode[] keys;
 
     void Start() { 
-        camera = transform.parent.gameObject;
+        flipCameraEvent.camera = transform.parent.gameObject;
+        originalSpeed = speed;
     }
 
     /*
@@ -48,7 +42,7 @@ public class Events : MonoBehaviour {
         Invicibilité avec clignotement a la mario - Fait 
         Double tap/triple tap des commandes - fait 
 
-        Accélération/décélération du vaisseau - Attendre déplacement fusée  
+        Accélération/décélération du vaisseau - Attendre déplacement fusée   
         Inertie plus/moins forte du vaisseau - Attendre déplacement fusée   
     */
 
@@ -59,47 +53,54 @@ public class Events : MonoBehaviour {
         if(!delayEvent.value && !tapEvent.value)  // Il n'y a pas de délai sur l'éxécution des commandes 
             actualizePosition();
         else if(delayEvent.value) { // Il y a un délai sur l'éxecution des commandes 
-            if(Input.GetAxis("Horizontal") != 0 && lastHInput >= -0.1f && lastHInput <= 0.1f ) { // Le joueur vient d'appuyer pour la première fois sur une touche de direction
-                hDelayTimer += Time.deltaTime;
+            if(Input.GetAxis("Horizontal") != 0 && delayEvent.lastHInput >= -0.1f && delayEvent.lastHInput <= 0.1f ) { // Le joueur vient d'appuyer pour la première fois sur une touche de direction
+                delayEvent.hDelayTimer += Time.deltaTime;
 
-                 if(hDelayTimer < hMaxDelayTimer) 
+                 if(delayEvent.hDelayTimer < delayEvent.hMaxDelayTimer) 
                     return;            
                 else 
                     actualizePosition(); 
 
             }
 
-            if(Input.GetAxis("Vertical") != 0 && lastVInput >= -0.1f && lastVInput <= 0.1f) { // Le joueur vient d'appuyer pour la première fois sur une touche de direction
-                vDelayTimer += Time.deltaTime;
+            if(Input.GetAxis("Vertical") != 0 && delayEvent.lastVInput >= -0.1f && delayEvent.lastVInput <= 0.1f) { // Le joueur vient d'appuyer pour la première fois sur une touche de direction
+                delayEvent.vDelayTimer += Time.deltaTime;
 
-                if(vDelayTimer < vMaxDelayTimer) 
+                if(delayEvent.vDelayTimer < delayEvent.vMaxDelayTimer) 
                     return;
                 else  
                     actualizePosition();
                                        
             }
 
-            lastHInput = Input.GetAxis("Horizontal");
-            lastVInput = Input.GetAxis("Vertical");
+            delayEvent.lastHInput = Input.GetAxis("Horizontal");
+            delayEvent.lastVInput = Input.GetAxis("Vertical");
         }
         else if(tapEvent.value) {
             foreach(KeyCode key in keys) {
                 
                 if(Input.GetKeyDown(key) && (key == lastKey || lastKey == KeyCode.None)) {
-                    tapEvent.counter++;
+                   // tapEvent.counter++;
                     lastKey = key;
                 }
                 else if(Input.GetKeyDown(key) && key != lastKey && lastKey != KeyCode.None) {
-                    tapEvent.counter = 1;
+                   // tapEvent.counter = 1;
                     lastKey = key;
                 }
             }
 
-            if(tapEvent.counter < tapEvent.maxCounter) 
+           /* if(tapEvent.counter < tapEvent.maxCounter) 
                 return;
             else 
                 actualizePosition();
+        */
         }
+
+
+      /*  if(inertiaEvent.value)
+            speed -= inertiaEvent.counter;
+*/
+        
 
         transform.Translate(x,y,0);
 
@@ -117,28 +118,29 @@ public class Events : MonoBehaviour {
         x = freezeEvent.value ? 0 : flipCameraEvent.value ? verticalEvent.value ? yAxis : yAxis * -1 : horizontalEvent.value ? xAxis : xAxis * -1;
         y = freezeEvent.value ? 0 : flipCameraEvent.value ? horizontalEvent.value ? xAxis : xAxis * -1 : verticalEvent.value ? yAxis : yAxis * -1;
 
-        hDelayTimer = 0;
-        vDelayTimer = 0;
+        delayEvent.hDelayTimer = 0;
+        delayEvent.vDelayTimer = 0;
     }
 
     private void flipCamera() {
+        GameObject camera = flipCameraEvent.camera;
         if(flipCameraEvent.value) {
-            if(camera.transform.eulerAngles.z == 0 || flipRotate) {
-                camera.transform.rotation = Quaternion.RotateTowards(camera.transform.rotation,Quaternion.Euler(0,0,180),speedRotate * Time.deltaTime);
-                flipRotate = true;
+            if(camera.transform.eulerAngles.z == 0 || flipCameraEvent.flipRotate) {
+                camera.transform.rotation = Quaternion.RotateTowards(camera.transform.rotation,Quaternion.Euler(0,0,180),flipCameraEvent.flipSpeed * Time.deltaTime);
+                flipCameraEvent.flipRotate = true;
 
-                if(camera.transform.eulerAngles.z == 180)
-                    flipRotate = false;
+                if(flipCameraEvent.camera.transform.eulerAngles.z == 180)
+                    flipCameraEvent.flipRotate = false;
 
             }
         }
         else {
-            if(camera.transform.eulerAngles.z == 180 || flipRotate) {
-                camera.transform.rotation = Quaternion.RotateTowards(camera.transform.rotation,Quaternion.Euler(0,0,0),speedRotate * Time.deltaTime);
-                flipRotate = true;
+            if(camera.transform.eulerAngles.z == 180 || flipCameraEvent.flipRotate) {
+                camera.transform.rotation = Quaternion.RotateTowards(camera.transform.rotation,Quaternion.Euler(0,0,0),flipCameraEvent.flipSpeed * Time.deltaTime);
+                flipCameraEvent.flipRotate = true;
 
                 if(camera.transform.eulerAngles.z == 0)
-                    flipRotate = false;
+                    flipCameraEvent.flipRotate = false;
             }
         }
     }
