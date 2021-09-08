@@ -7,6 +7,9 @@ public class Spawner : MonoBehaviour
     public Transform baseRockStorage;
     public Transform bigRockStorage;
 
+    public GameObject baseRockPrefab;
+    public GameObject bigRockPrefab;
+
     public float baseRockSpawnCooldown;
     public float baseRockCDVariation;
     public int baseRockMaxNumberPerWave;
@@ -16,6 +19,20 @@ public class Spawner : MonoBehaviour
 
     private float baseRockSpawnTimer = 0f;
     private float bigRockSpawnTimer = 0f;
+
+    private void Awake()
+    {
+        for (int i = 0; i < 50; i++)
+        {
+            GameObject rock = Instantiate(baseRockPrefab, baseRockStorage);
+            // random mesh;
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            GameObject bigRock = Instantiate(bigRockPrefab, bigRockStorage);
+            // random mesh;
+        }
+    }
 
     void Update()
     {
