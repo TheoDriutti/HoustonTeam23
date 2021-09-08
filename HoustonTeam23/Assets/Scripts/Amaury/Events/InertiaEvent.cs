@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DelayEvent : Event
+public class InertiaEvent : Event
 {
-    public float duration;
+    public int inertiaValue;
 }

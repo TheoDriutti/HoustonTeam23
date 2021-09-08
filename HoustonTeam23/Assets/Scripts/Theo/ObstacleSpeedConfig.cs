@@ -6,5 +6,7 @@ using UnityEngine;
 public class ObstacleSpeedConfig : ScriptableObject
 {
     public float speed;
+    public float speedVariation;
     public float angularSpeed;
+    public float angularSpeedVariation;
 }

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 521ff4f113172a34fa2efe8c6bb7bf12, type: 3}
-  m_Name: BaseRock
+  m_Name: Debris
   m_EditorClassIdentifier: 
-  speed: 10
-  speedVariation: 1
-  angularSpeed: 2
-  angularSpeedVariation: 0.2
+  speed: 12
+  speedVariation: 0
+  angularSpeed: 0
+  angularSpeedVariation: 0

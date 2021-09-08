@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 521ff4f113172a34fa2efe8c6bb7bf12, type: 3}
   m_Name: BigRock
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 3
+  speedVariation: 0.2
   angularSpeed: 1
+  angularSpeedVariation: 0.1

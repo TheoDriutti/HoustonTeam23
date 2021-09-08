@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TapEvent : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+public class TapEvent : Event {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public KeyCode lastKey;
+    public KeyCode[] keys;
+    public int counter,maxCounter;
+    public int delay;
+
+    public float lastTimeKeyDown;
 }
