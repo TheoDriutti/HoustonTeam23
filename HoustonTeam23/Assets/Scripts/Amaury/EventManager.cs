@@ -1,53 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EventManager : MonoBehaviour {
 
+    public PlayerController pController;
 /* Events */
-    public Event freezeEvent;
-    public Event horizontalEvent;
-    public Event verticalEvent;
+    public FreezeEvent freezeEvent;
+    public HorizontalEvent horizontalEvent;
+    public VerticalEvent verticalEvent;
     public DelayEvent delayEvent;
     public FlipCameraEvent flipCameraEvent;
-    public Event tapEvent;
-    public Event inertiaEvent;
+    public TapEvent tapEvent;
+    public InertiaEvent inertiaEvent;
+    public SpeedEvent speedEvent;
 
 /* Movement */
-    public float speed;
-    private float x,y,originalSpeed;   
-
+    private float x,y,originalHorizontalSpeed,originalVerticalSpeed;   
 
 /* Incibility */
     public bool hurt;
     private float hurtTimer,flashingTimer;
     public float maxHurtTimer,flashingTime;
     public MeshRenderer[] spatialship;
-
-
-    /* Tap Event */
-    private KeyCode lastKey;
-    public KeyCode[] keys;
+    public EventUI ui;
 
     void Start() { 
         flipCameraEvent.camera = transform.parent.gameObject;
-        originalSpeed = speed;
+        originalHorizontalSpeed = pController.horizontalSpeed;
     }
 
-    /*
-        Inversion axe horizontale / Inversion axe verticale - Fait
-        Immobilisation temporaire  -Fait 
-        Retournement de la fusée -> retournement écran + inversion combinée axes - et | - Fait
-        Délai avant que le déplacement ne se fasse (valeur à tweaker) : tu appuies sur ->, il y a un temps avant que le vaisseau aille à droite - Fait
-        Invicibilité avec clignotement a la mario - Fait 
-        Double tap/triple tap des commandes - fait 
 
-        Accélération/décélération du vaisseau - Attendre déplacement fusée   
-        Inertie plus/moins forte du vaisseau - Attendre déplacement fusée   
-    */
-
-
-// < >
     void Update() {
 
         if(!delayEvent.value && !tapEvent.value)  // Il n'y a pas de délai sur l'éxécution des commandes 
@@ -77,30 +61,52 @@ public class EventManager : MonoBehaviour {
             delayEvent.lastVInput = Input.GetAxis("Vertical");
         }
         else if(tapEvent.value) {
-            foreach(KeyCode key in keys) {
+            foreach(KeyCode key in tapEvent.keys) {
                 
-                if(Input.GetKeyDown(key) && (key == lastKey || lastKey == KeyCode.None)) {
-                   // tapEvent.counter++;
-                    lastKey = key;
-                }
-                else if(Input.GetKeyDown(key) && key != lastKey && lastKey != KeyCode.None) {
-                   // tapEvent.counter = 1;
-                    lastKey = key;
-                }
+                //if(tapEvent.lastTimeKeyDown == 0 || tapEvent.lastTimeKeyDown - Time.deltaTime <= 0.1f) {
+                    if(Input.GetKeyDown(key) && (key == tapEvent.lastKey || tapEvent.lastKey == KeyCode.None)) {
+                        tapEvent.counter++;
+                        tapEvent.lastKey = key;
+                        tapEvent.lastTimeKeyDown = Time.deltaTime;
+                    }
+                    else if(Input.GetKeyDown(key) && key != tapEvent.lastKey && tapEvent.lastKey != KeyCode.None) {
+                        tapEvent.counter = 1;
+                        tapEvent.lastKey = key;
+                        tapEvent.lastTimeKeyDown = Time.deltaTime;
+                    }
+                //} Rajouter le timer 
             }
 
-           /* if(tapEvent.counter < tapEvent.maxCounter) 
+            if(tapEvent.counter < tapEvent.maxCounter) 
                 return;
             else 
                 actualizePosition();
-        */
+        
         }
 
 
-      /*  if(inertiaEvent.value)
-            speed -= inertiaEvent.counter;
-*/
-        
+        if(inertiaEvent.value && pController.horizontalSpeed == originalHorizontalSpeed)
+            pController.horizontalSpeed -= inertiaEvent.inertiaValue;
+        else if(!inertiaEvent.value && pController.horizontalSpeed != originalHorizontalSpeed) 
+            pController.horizontalSpeed = originalHorizontalSpeed;
+
+        if(speedEvent.value) {
+            float step = speedEvent.maxSpeedTimer / 5;
+
+            if(speedEvent.speedTimer <= speedEvent.maxSpeedTimer) {
+                speedEvent.speedTimer += Time.deltaTime;
+                speedEvent.stepTimer += Time.deltaTime;
+
+                if(speedEvent.stepTimer  >= step - 0.05f) {
+                    pController.horizontalSpeed += speedEvent.amplifier / 5;
+                    pController.verticalSpeed += speedEvent.amplifier / 5;
+                    speedEvent.index++;
+                    speedEvent.stepTimer = 0;
+                }
+            }
+            
+        }
+
 
         transform.Translate(x,y,0);
 
@@ -112,11 +118,11 @@ public class EventManager : MonoBehaviour {
 
     private void actualizePosition() {
         
-        float xAxis = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
-        float yAxis = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        float xAxis = Input.GetAxis("Horizontal") * pController.horizontalSpeed * Time.deltaTime;
+        float yAxis = Input.GetAxis("Vertical") * pController.horizontalSpeed * Time.deltaTime;
 
-        x = freezeEvent.value ? 0 : flipCameraEvent.value ? verticalEvent.value ? yAxis : yAxis * -1 : horizontalEvent.value ? xAxis : xAxis * -1;
-        y = freezeEvent.value ? 0 : flipCameraEvent.value ? horizontalEvent.value ? xAxis : xAxis * -1 : verticalEvent.value ? yAxis : yAxis * -1;
+        x = freezeEvent.value ? 0 : /*flipCameraEvent.value ?  *verticalEvent.value ? yAxis : yAxis * -1 : */horizontalEvent.value ? xAxis : xAxis * -1;
+        y = freezeEvent.value ? 0 : /*flipCameraEvent.value ? horizontalEvent.value ? xAxis : xAxis * -1 : */verticalEvent.value ? yAxis : yAxis * -1;
 
         delayEvent.hDelayTimer = 0;
         delayEvent.vDelayTimer = 0;
