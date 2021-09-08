@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     public float maxTurnRotation = 35f;
     public AnimationCurve turnBehavior;
 
-
     // Update is called once per frame
     void Update()
     {

@@ -4,21 +4,26 @@ using UnityEngine;
 
 public class ZoneDebris : MonoBehaviour
 {
-    public int speed;
+    private ObstacleMovement moveScript;
 
-    public GameObject debris;
-    public CameraShake cameraShake;
-
-    void Update()
+    private void Start()
     {
-        transform.Translate(Vector3.back * speed * Time.deltaTime);
+        moveScript = GetComponent<ObstacleMovement>();
+    }
+
+    private void Update()
+    {
+        if (!moveScript.enabled)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(cameraShake.Shake(.15f, .4f));
+            StartCoroutine(Camera.main.GetComponent<CameraShake>().Shake(.15f, .4f));
         }
     }
 }
