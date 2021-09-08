@@ -1,8 +1,9 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EventNaturalSpawner : MonoBehaviour {
+public class EventNaturalSpawner : MonoBehaviour
+{
 
     public List<Event> naturalEvents;
 
@@ -13,35 +14,35 @@ public class EventNaturalSpawner : MonoBehaviour {
     public float timeMin;
     public float timeMax;
 
-    private float timer,time;
+    private float timer, time;
 
     public EventManager manager;
 
-    void Update() {
-        if(spawn) {
-            int rand = Random.Range(0,naturalEvents.Count - 1);
-            time = Random.Range(timeMin,timeMax);
+    void Update()
+    {
+        if (spawn)
+        {
+            int rand = Random.Range(0, naturalEvents.Count - 1);
+            time = Random.Range(timeMin, timeMax);
             currentEvent = naturalEvents[rand];
 
-            if(lastEvent != null && lastEvent.id == currentEvent.id) {
-                rand = Random.Range(0,naturalEvents.Count - 1);
-                currentEvent = naturalEvents[rand];
-                return;
-            }
+            if (lastEvent != null && lastEvent.id == currentEvent.id) return;
 
             lastEvent = currentEvent;
             spawn = false;
         }
-        else{
-            if(!currentEvent.value) {
+        else
+        {
+            if (!currentEvent.value)
+            {
                 timer += Time.deltaTime;
-                if(timer >= time - 2f) 
+                if (timer >= time - 2f)
                     manager.ui.Flash();
-                
-                if(timer >= time) {
+
+                if (timer >= time)
+                {
                     currentEvent.value = true;
-                    timer = 0;
-                    manager.ui.malus.enabled = true;
+                    timer = 0f;
                     Debug.Log("Event " + currentEvent.name + " activated");
                 }
             }
