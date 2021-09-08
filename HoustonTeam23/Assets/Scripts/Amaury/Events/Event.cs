@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Event : MonoBehaviour {
 
+    public string name;
+    public int id;
     public bool value;
     private float timer;
     public float maxTimer;
     public int percentage;
-    //public int counter,maxCounter; // ne sert que pour un event 
+    public SpriteRenderer icon;
+    public EventNaturalSpawner spawner;
 
     void Update() {
         if(value) {
@@ -17,6 +20,7 @@ public class Event : MonoBehaviour {
             if(timer >= maxTimer) {
                 timer = 0;
                 value = false;
+                spawner.spawn = true;
             }
         }
     }
