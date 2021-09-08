@@ -12,7 +12,7 @@ public class ObstacleMovement : MonoBehaviour
     private void Awake()
     {
         speed = config.speed + Random.Range(-1, 1) * config.speedVariation;
-        angularSpeed = config.speed + Random.Range(-1, 1) * config.angularSpeedVariation;
+        angularSpeed = config.angularSpeed + Random.Range(-1, 1) * config.angularSpeedVariation;
     }
 
     // Update is called once per frame  

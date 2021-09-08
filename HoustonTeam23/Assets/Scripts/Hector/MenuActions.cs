@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 public class MenuActions : MonoBehaviour
 {
     public GameObject panelTuto;
+
     public void Quit()
     {
         Application.Quit();
     }
 
-
     public void Play()
     {
-        SceneManager.LoadScene("GameplayHector");
+        SceneManager.LoadScene("Gameplay");
     }
 
     public void Tuto()
