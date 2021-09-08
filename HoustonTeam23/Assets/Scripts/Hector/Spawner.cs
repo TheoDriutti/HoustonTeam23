@@ -4,55 +4,63 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    public Transform rockStorage;
-    public GameObject bigFatRock;
+    public Transform baseRockStorage;
+    public Transform bigRockStorage;
 
-    public bool isThereBigRock = false;
-    private float timeBtwSpawn;
-    public float startTimeBtwSpawn;
-    public float decreaseTimeBtwSpawn;
-    public float minTimeBtwSpawn = 2;
+    public float baseRockSpawnCooldown;
+    public float baseRockCDVariation;
+    public int baseRockMaxNumberPerWave;
 
+    public float bigRockSpawnCooldown;
+    public float bigRockCDVariation;
 
-    void Start()
-    {
-        timeBtwSpawn = startTimeBtwSpawn;
-    }
-
+    private float baseRockSpawnTimer = 0f;
+    private float bigRockSpawnTimer = 0f;
 
     void Update()
     {
-        if (timeBtwSpawn <= 0)
+        BaseRockSpawnUpdate();
+        BigRockSpawnUpdate();
+    }
+
+    private void BaseRockSpawnUpdate()
+    {
+        if (baseRockSpawnTimer <= 0f)
         {
             SimpleRockActivation();
-            int rand = Random.Range(0, 6);
-            if (rand == 4 && isThereBigRock == false)
-            {
-                BigRockActivation();
-            }
-            timeBtwSpawn = startTimeBtwSpawn;
-            if (startTimeBtwSpawn > minTimeBtwSpawn)
-            {
-                startTimeBtwSpawn -= decreaseTimeBtwSpawn;
-            }
-
+            baseRockSpawnTimer = baseRockSpawnCooldown + Random.Range(-baseRockCDVariation, baseRockCDVariation);
         }
         else
         {
-            timeBtwSpawn -= Time.deltaTime;
+            baseRockSpawnTimer -= Time.deltaTime;
+        }
+    }
+
+    private void BigRockSpawnUpdate()
+    {
+        if (bigRockSpawnTimer <= 0f)
+        {
+            BigRockActivation();
+            bigRockSpawnTimer = bigRockSpawnCooldown + Random.Range(-bigRockCDVariation, bigRockCDVariation);
+        }
+        else
+        {
+            bigRockSpawnTimer += Time.deltaTime;
         }
     }
 
     public void SimpleRockActivation()
     {
-        for (int i = Random.Range(1, 7); i >= 0; i--)
+        for (int i = Random.Range(1, baseRockMaxNumberPerWave + 1); i > 0; i--)
         {
             Vector3 spawnPosition = transform.position;
-            spawnPosition.x += Random.Range(-30, 30);
-            spawnPosition.y = Random.Range(-10, 10);
-            spawnPosition.z = transform.position.z;
-            Transform rock = rockStorage.GetChild(0);
+            spawnPosition.x = Random.Range(-(GameData.i.horizontalGameSize - 1), GameData.i.horizontalGameSize - 1);
+            spawnPosition.y = Random.Range(-(GameData.i.verticalGameSize.x - 1), GameData.i.verticalGameSize.y - 1);
+
+            Transform rock = baseRockStorage.GetChild(0);
             rock.SetAsLastSibling();
+
+            rock.gameObject.GetComponent<ObstacleMovement>().enabled = true;
             rock.transform.position = spawnPosition;
         }
     }
@@ -60,12 +68,12 @@ public class Spawner : MonoBehaviour
     public void BigRockActivation()
     {
         Vector3 spawnPosition = transform.position;
-        spawnPosition.x += Random.Range(-30, 10);
-        spawnPosition.y = Random.Range(0, 10);
-        spawnPosition.z = transform.position.z;
-        GameObject bigRock = bigFatRock;
-        bigFatRock.transform.position = spawnPosition;
-        isThereBigRock = true;
-    }
+        spawnPosition.x += Random.Range(-(GameData.i.horizontalGameSize - 1), GameData.i.horizontalGameSize - 1);
+        spawnPosition.y = Random.Range(-(GameData.i.verticalGameSize.x - 1), GameData.i.verticalGameSize.y - 1);
 
+        Transform rock = bigRockStorage.GetChild(0);
+        rock.SetAsLastSibling();
+        rock.gameObject.GetComponent<ObstacleMovement>().enabled = true;
+        rock.transform.position = spawnPosition;
+    }
 }
