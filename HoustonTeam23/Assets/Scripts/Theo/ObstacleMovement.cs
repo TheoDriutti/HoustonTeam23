@@ -12,6 +12,7 @@ public class ObstacleMovement : MonoBehaviour
         transform.Rotate(config.angularSpeed * Time.deltaTime, config.angularSpeed * Time.deltaTime, config.angularSpeed * Time.deltaTime);
         transform.Translate(-Vector3.forward * config.speed * Time.deltaTime, Space.World);
 
+        //local
         if (Camera.main.transform.position.z > transform.position.z)
         {
             this.enabled = false;

@@ -51,7 +51,7 @@ public class Spawner : MonoBehaviour
 
     public void SimpleRockActivation()
     {
-        for (int i = Random.Range(1, baseRockMaxNumberPerWave + 1); i > 0; i--)
+        for (int i = Random.Range(1, baseRockMaxNumberPerWave); i > 0; i--)
         {
             Vector3 spawnPosition = transform.position;
             spawnPosition.x = Random.Range(-(GameData.i.horizontalGameSize - 1), GameData.i.horizontalGameSize - 1);
@@ -60,7 +60,7 @@ public class Spawner : MonoBehaviour
             Transform rock = baseRockStorage.GetChild(0);
             rock.SetAsLastSibling();
 
-            rock.gameObject.GetComponent<ObstacleMovement>().enabled = true;
+            rock.GetComponent<ObstacleMovement>().enabled = true;
             rock.transform.position = spawnPosition;
         }
     }

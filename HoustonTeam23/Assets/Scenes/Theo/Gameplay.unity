@@ -497,7 +497,7 @@ MonoBehaviour:
   bigRockStorage: {fileID: 1660862062}
   baseRockSpawnCooldown: 1
   baseRockCDVariation: 0.2
-  baseRockMaxNumberPerWave: 0
+  baseRockMaxNumberPerWave: 3
   bigRockSpawnCooldown: 4
   bigRockCDVariation: 1
 --- !u!1 &83760407
