@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/BrunHector/MainMenu.unity
+    guid: 946d0e67e4cb7b9489f106c587a49662
+  - enabled: 1
+    path: Assets/Scenes/BrunHector/GameplayHector.unity
+    guid: 25b89c02cc8217f458565dfb4abf3573
   m_configObjects: {}
