@@ -7,9 +7,6 @@ public class PlayerController : MonoBehaviour
     public float verticalSpeed;
     public float horizontalSpeed;
 
-    public float movementRangeX;
-    public Vector2 movementRangeY;
-
     public float maxTurnRotation = 35f;
     public AnimationCurve turnBehavior;
 
@@ -24,11 +21,11 @@ public class PlayerController : MonoBehaviour
         {
             float horiNewPos = transform.position.x + horizontalSpeed * horiInput * Time.deltaTime;
 
-            if (Mathf.Abs(horiNewPos) < movementRangeX)
+            if (Mathf.Abs(horiNewPos) < GameData.i.horizontalGameSize)
             {
                 transform.position = new Vector3(horiNewPos, transform.position.y, transform.position.z);
 
-                float shipAngle = turnBehavior.Evaluate(Mathf.Abs(horiNewPos) / movementRangeX) * maxTurnRotation * Mathf.Sign(horiNewPos);
+                float shipAngle = turnBehavior.Evaluate(Mathf.Abs(horiNewPos) / GameData.i.horizontalGameSize) * maxTurnRotation * Mathf.Sign(horiNewPos);
                 transform.rotation = Quaternion.Euler(0, 0, shipAngle);
             }
         }
@@ -37,7 +34,7 @@ public class PlayerController : MonoBehaviour
         {
             float vertiNewPos = transform.position.y + verticalSpeed * vertiInput * Time.deltaTime;
 
-            if (movementRangeY.x < vertiNewPos && vertiNewPos < movementRangeY.y)
+            if (GameData.i.verticalGameSize.x < vertiNewPos && vertiNewPos < GameData.i.verticalGameSize.y)
             {
                 transform.position = new Vector3(transform.position.x, vertiNewPos, transform.position.z);
             }

@@ -14,7 +14,7 @@ public class ZoneDebris : MonoBehaviour
         transform.Translate(Vector3.back * speed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
