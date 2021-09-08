@@ -55,7 +55,7 @@ public class Spawner : MonoBehaviour
         {
             Vector3 spawnPosition = transform.position;
             spawnPosition.x = Random.Range(-(GameData.i.horizontalGameSize - 1), GameData.i.horizontalGameSize - 1);
-            spawnPosition.y = Random.Range(-(GameData.i.verticalGameSize.x - 1), GameData.i.verticalGameSize.y - 1);
+            spawnPosition.y = Random.Range(GameData.i.verticalGameSize.x + 1, GameData.i.verticalGameSize.y - 1);
 
             Transform rock = baseRockStorage.GetChild(0);
             rock.SetAsLastSibling();
