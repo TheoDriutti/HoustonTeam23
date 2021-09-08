@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class DelayEvent : Event
 {
-    public float duration;
+    public float duration,timer;
 }
