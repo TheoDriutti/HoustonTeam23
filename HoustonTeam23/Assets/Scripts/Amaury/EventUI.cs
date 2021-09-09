@@ -32,7 +32,8 @@ public class EventUI : MonoBehaviour
         }
     }
 
-    public void DisplayIcon(Event currentEvent) {
-         malus.sprite = currentEvent.icon;
+    public void DisplayIcon(Event currentEvent,bool active) {
+        malus.sprite = currentEvent.icon;
+        malus.enabled = active;
     }
 }

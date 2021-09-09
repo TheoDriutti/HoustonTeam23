@@ -7,13 +7,14 @@ public class FlipCameraEvent : Event
     public float flipSpeed;
     public bool flipRotate;
 
-    private void Update()
+    public override void Update()
     {
-
+        base.Update();
         if (Input.GetKeyDown(KeyCode.H))
         {
             value = true;
         }
+
         GameObject camera = Camera.main.gameObject;
         if (value)
         {

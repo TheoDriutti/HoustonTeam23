@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 521ff4f113172a34fa2efe8c6bb7bf12, type: 3}
   m_Name: BaseRock
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 15
   speedVariation: 1
   angularSpeed: 2
   angularSpeedVariation: 0.2
