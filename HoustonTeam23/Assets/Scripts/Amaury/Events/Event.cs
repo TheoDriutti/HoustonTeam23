@@ -11,7 +11,7 @@ public class Event : MonoBehaviour
     private float timer;
     public float maxTimer;
     public int percentage;
-    public SpriteRenderer icon;
+    public Sprite icon;
     public EventNaturalSpawner spawner;
 
     void Update()
@@ -25,7 +25,10 @@ public class Event : MonoBehaviour
                 timer = 0;
                 value = false;
                 spawner.spawn = true;
+                OnFinish();
             }
         }
     }
+
+    void OnFinish() {}
 }
