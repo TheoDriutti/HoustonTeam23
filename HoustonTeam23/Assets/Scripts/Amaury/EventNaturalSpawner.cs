@@ -22,6 +22,7 @@ public class EventNaturalSpawner : MonoBehaviour
     {
         if (spawn)
         {
+            //int rand = Random.Range(0, 3);
             int rand = Random.Range(0, naturalEvents.Count);
             time = Random.Range(timeMin, timeMax);
             currentEvent = naturalEvents[rand];

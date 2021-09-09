@@ -14,7 +14,7 @@ public class Event : MonoBehaviour
     public Sprite icon;
     public EventNaturalSpawner spawner;
 
-    void Update()
+    public virtual void Update()
     {
         if (value)
         {

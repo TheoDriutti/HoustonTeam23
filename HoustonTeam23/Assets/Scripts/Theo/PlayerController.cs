@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
                     return;
                 }
 
-                MoveVertical();
+                MoveHorizontal();
                 inputDelay.delayTimer = 0;
             }
             else
