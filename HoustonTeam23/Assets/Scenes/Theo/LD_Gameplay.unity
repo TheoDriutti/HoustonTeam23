@@ -392,9 +392,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   naturalEvents:
-  - {fileID: 1029187911}
-  - {fileID: 470660605}
-  - {fileID: 1700520774}
   - {fileID: 1059436129}
   - {fileID: 16112988}
   currentEvent: {fileID: 0}

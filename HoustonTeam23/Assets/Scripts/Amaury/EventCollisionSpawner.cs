@@ -25,20 +25,12 @@ public class EventCollisionSpawner : MonoBehaviour
             if (currentEvent != null && currentEvent.spawner.currentEvent != null) currentEvent.spawner.currentEvent.value = false;
 
             int rand = Random.Range(0, 100);
-            if (rand >= 0 && rand < 50)  // premier event 
+            if (rand >= 0 && rand < 33)  // premier event 
                 currentEvent = collisionEvents[0];
-            else if (rand >= 50)  // deuxieme event
+            else if (rand >= 33 && rand < 67)  // deuxieme event
                 currentEvent = collisionEvents[1];
-            //else  // quatrieme event
-            //    currentEvent = collisionEvents[3];
-
-            //int rand = Random.Range(0, 100);
-            //if (rand >= 0 && rand < 35)  // premier event 
-            //    currentEvent = collisionEvents[0];
-            //else if (rand >= 35 && rand < 70)  // deuxieme event
-            //    currentEvent = collisionEvents[1];
-            //else if (rand >= 70)  // troisieme event
-            //    currentEvent = collisionEvents[2];
+            else if (rand >= 67)  // troisieme event
+                currentEvent = collisionEvents[2];
             //else  // quatrieme event
             //    currentEvent = collisionEvents[3];
 

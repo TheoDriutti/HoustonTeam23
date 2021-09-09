@@ -4,34 +4,50 @@ using UnityEngine;
 
 public class SpeedEvent : Event
 {
-   public float amplifier;
-   public float speedTimer,stepTimer;
-   public float maxSpeedTimer;
+    public float amplifier;
+    public float maxSpeedTimer;
 
-   public int index;
+    bool speeding = false;
+    float speedTimer;
+    float[] baseSpeeds;
 
-   public PlayerController pController;
+    // Faire une fonction OnFinish qui sexecute a la fin de mon event
 
-   // Faire une fonction OnFinish qui sexecute a la fin de mon event
+    private void Start()
+    {
+        //baseSpeeds = new float[GameData.i.speedConfigs.Length];
+        //for (int i = 0; i < GameData.i.speedConfigs.Length; i++)
+        //{
+        //    baseSpeeds[i] = GameData.i.speedConfigs[i].speed;
+        //}
+    }
 
-   void Update() {
-       if (value)
-      {  
-         float step = maxSpeedTimer / 5;
+    public override void Update()
+    {
+        base.Update();
 
-         if (speedTimer <= maxSpeedTimer)
+        if (value)
+        {
+            if (speedTimer <= maxSpeedTimer)
             {
-            speedTimer += Time.deltaTime;
-            stepTimer += Time.deltaTime;
+                speedTimer += Time.deltaTime;
 
-            if (stepTimer >= step - 0.05f)
-               {
-                  pController.horizontalSpeed += amplifier / 5;
-                  pController.verticalSpeed += amplifier / 5;
-                  index++;
-                  stepTimer = 0;
-               }
-         }
-      }
-   }
+                //foreach (ObstacleSpeedConfig config in GameData.i.speedConfigs)
+                //{
+                //    config.speed *= amplifier * speedTimer / maxSpeedTimer;
+                //}
+            }
+
+        }
+        else
+        {
+            speedTimer = 0f;
+
+            //for (int i = 0; i < GameData.i.speedConfigs.Length; i++)
+            //{
+            //    GameData.i.speedConfigs[i].speed = baseSpeeds[i];
+            //}
+        }
+    }
 }
+

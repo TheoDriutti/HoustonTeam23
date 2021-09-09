@@ -17,8 +17,10 @@ public class InertiaEvent : Event
         originalVerticalSpeed = pController.verticalSpeed;
     }
 
-    void Update()
+    public override void Update()
     {
+        base.Update();
+
         if (value && pController.horizontalSpeed == originalHorizontalSpeed)
         {
             pController.horizontalSpeed -= inertiaValue;

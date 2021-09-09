@@ -14,7 +14,7 @@ public class Event : MonoBehaviour
     public Sprite icon;
     public EventNaturalSpawner spawner;
 
-    void Update()
+    public virtual void Update()
     {
         if (value)
         {
@@ -27,8 +27,9 @@ public class Event : MonoBehaviour
                 spawner.spawn = true;
             }
         }
-        else {
-            spawner.manager.ui.DisplayIcon(this,false);
+        else
+        {
+            spawner.manager.ui.DisplayIcon(this, false);
         }
     }
 }
