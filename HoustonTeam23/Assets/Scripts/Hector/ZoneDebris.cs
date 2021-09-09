@@ -6,6 +6,7 @@ public class ZoneDebris : MonoBehaviour
 {
     private ObstacleMovement moveScript;
 
+
     private void Start()
     {
         moveScript = GetComponent<ObstacleMovement>();
