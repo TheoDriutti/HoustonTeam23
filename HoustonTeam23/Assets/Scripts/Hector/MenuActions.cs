@@ -13,7 +13,7 @@ public class MenuActions : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("Gameplay");
+        SceneManager.LoadScene("LD_Gameplay");
     }
 
     public void Tuto()

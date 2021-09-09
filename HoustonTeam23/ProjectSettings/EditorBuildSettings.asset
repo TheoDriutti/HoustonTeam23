@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/BrunHector/GameplayHector.unity
     guid: 25b89c02cc8217f458565dfb4abf3573
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Theo/Gameplay.unity
     guid: e8c86fdb9910d3349a9ded91b51cc390
+  - enabled: 1
+    path: Assets/Scenes/Theo/LD_Gameplay.unity
+    guid: 85887289385cbd246a8f8c901e61dcc7
   m_configObjects: {}
