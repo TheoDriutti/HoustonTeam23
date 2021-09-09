@@ -9,8 +9,6 @@ public class TapEvent : Event
     public KeyCode[] keys;
     public int counter, maxCounter;
 
-    public float lastTimeKeyDown;
-
     public override void Update()
     {
         base.Update();
@@ -18,21 +16,23 @@ public class TapEvent : Event
         foreach (KeyCode key in keys)
         {
 
-            //  if(tapEvent.lastTimeKeyDown == 0 || tapEvent.lastTimeKeyDown - Time.deltaTime <= 0.1f) {
             if (Input.GetKeyDown(key) && (key == lastKey || lastKey == KeyCode.None))
             {
                 counter++;
                 lastKey = key;
-                lastTimeKeyDown = Time.deltaTime;
             }
             else if (Input.GetKeyDown(key) && key != lastKey && lastKey != KeyCode.None)
             {
                 counter = 1;
                 lastKey = key;
-                lastTimeKeyDown = Time.deltaTime;
             }
-            //} Rajouter le timer 
         }
+
+        if(!Input.GetKey(lastKey) && counter >= maxCounter)
+            counter = 0;
+
+        if(!value)
+            counter = 0;
 
     }
 }
