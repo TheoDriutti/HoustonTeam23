@@ -24,12 +24,9 @@ public class Event : MonoBehaviour
             {
                 timer = 0f;
                 value = false;
+                spawner.manager.ui.DisplayIcon(this, false);
                 spawner.spawn = true;
             }
-        }
-        else
-        {
-            spawner.manager.ui.DisplayIcon(this, false);
         }
     }
 }
