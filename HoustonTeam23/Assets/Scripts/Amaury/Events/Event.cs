@@ -8,7 +8,7 @@ public class Event : MonoBehaviour
     public string name;
     public int id;
     public bool value;
-    private float timer = 0f;
+    public float timer;
     public float maxTimer;
     public int percentage;
     public Sprite icon;
@@ -16,8 +16,10 @@ public class Event : MonoBehaviour
 
     void Update()
     {
+        Debug.Log("lol: " + this);
         if (value)
         {
+            Debug.Log("enter");
             timer += Time.deltaTime;
 
             if (timer >= maxTimer)
@@ -26,6 +28,9 @@ public class Event : MonoBehaviour
                 value = false;
                 spawner.spawn = true;
             }
+        }
+        else {
+            spawner.manager.ui.DisplayIcon(this,false);
         }
     }
 }

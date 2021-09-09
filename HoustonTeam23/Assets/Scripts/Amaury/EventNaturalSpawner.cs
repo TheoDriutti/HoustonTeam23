@@ -37,7 +37,7 @@ public class EventNaturalSpawner : MonoBehaviour
             if (!currentEvent.value)
             {
                 timer += Time.deltaTime;
-                if (timer >= time - 2f)
+                if (timer >= time - 2f) // PAtch quand tu collisionnes et que c deja entrain de flash & désactiver la fin de l'image a la fin
                     manager.ui.Flash();
 
                 if (timer >= time)

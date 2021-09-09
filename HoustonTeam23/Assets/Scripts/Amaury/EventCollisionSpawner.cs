@@ -42,8 +42,8 @@ public class EventCollisionSpawner : MonoBehaviour
             //else  // quatrieme event
             //    currentEvent = collisionEvents[3];
 
-            currentEvent.value = true;
-            manager.ui.DisplayIcon(currentEvent);
+            //currentEvent.value = true;
+            manager.ui.DisplayIcon(currentEvent,true);
             Debug.Log("Event " + currentEvent.name + " activated");
         }
     }

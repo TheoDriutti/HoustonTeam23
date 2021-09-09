@@ -10,10 +10,6 @@ public class FlipCameraEvent : Event
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            value = true;
-        }
         GameObject camera = Camera.main.gameObject;
         if (value)
         {
