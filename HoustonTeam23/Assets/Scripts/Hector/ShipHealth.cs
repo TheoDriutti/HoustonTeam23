@@ -8,6 +8,12 @@ public class ShipHealth : MonoBehaviour
     public int currentHealth;
 
     public HealthBar healthBar;
+    public static ShipHealth instance;
+
+    public void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
