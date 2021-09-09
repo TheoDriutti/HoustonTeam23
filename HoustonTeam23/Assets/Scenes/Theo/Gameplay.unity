@@ -169,6 +169,7 @@ MonoBehaviour:
   name: Horiz Inversion
   id: 1
   value: 0
+  timer: 0
   maxTimer: 10
   percentage: 100
   icon: {fileID: 0}
@@ -392,9 +393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   naturalEvents:
-  - {fileID: 1029187911}
   - {fileID: 470660605}
-  - {fileID: 1700520774}
   - {fileID: 1059436129}
   - {fileID: 16112988}
   currentEvent: {fileID: 0}
@@ -524,6 +523,7 @@ MonoBehaviour:
   name: Flip
   id: 6
   value: 0
+  timer: 0
   maxTimer: 5
   percentage: 100
   icon: {fileID: 0}
@@ -576,11 +576,12 @@ MonoBehaviour:
   name: Speed Up
   id: 7
   value: 0
+  timer: 0
   maxTimer: 7
   percentage: 100
   icon: {fileID: 0}
   spawner: {fileID: 224988077}
-  amplifier: 10
+  amplifier: 3
   maxSpeedTimer: 3
 --- !u!1001 &753808081
 PrefabInstance:
@@ -1356,6 +1357,7 @@ MonoBehaviour:
   name: Delay
   id: 0
   value: 0
+  timer: 0
   maxTimer: 10
   percentage: 100
   icon: {fileID: 0}
@@ -1408,6 +1410,7 @@ MonoBehaviour:
   name: Vert Inversion
   id: 2
   value: 0
+  timer: 0
   maxTimer: 10
   percentage: 100
   icon: {fileID: 0}
@@ -2233,11 +2236,12 @@ MonoBehaviour:
   name: SpeedDown
   id: 8
   value: 0
+  timer: 0
   maxTimer: 7
   percentage: 100
   icon: {fileID: 0}
   spawner: {fileID: 224988077}
-  amplifier: 0.01
+  amplifier: 0.3
   maxSpeedTimer: 3
 --- !u!1 &1724463526
 GameObject:
@@ -2324,6 +2328,7 @@ MonoBehaviour:
   name: Tap
   id: 4
   value: 0
+  timer: 0
   maxTimer: 8
   percentage: 100
   icon: {fileID: 0}
@@ -2379,6 +2384,7 @@ MonoBehaviour:
   name: Freeze
   id: 3
   value: 0
+  timer: 0
   maxTimer: 2
   percentage: 100
   icon: {fileID: 0}
@@ -2429,6 +2435,7 @@ MonoBehaviour:
   name: Inertia
   id: 5
   value: 0
+  timer: 0
   maxTimer: 10
   percentage: 100
   icon: {fileID: 0}
@@ -2480,7 +2487,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalGameSize: 32
   verticalGameSize: {x: -9, y: 9}
-  speedConfigs:
-  - {fileID: 11400000, guid: 46f026a1c0dd903448c1de3abf62302b, type: 2}
-  - {fileID: 11400000, guid: 4d8f46e3cebfa1f4d9f7d783de8f6099, type: 2}
-  - {fileID: 11400000, guid: 9c5a40060ebc5504597a3df0b09f3b30, type: 2}

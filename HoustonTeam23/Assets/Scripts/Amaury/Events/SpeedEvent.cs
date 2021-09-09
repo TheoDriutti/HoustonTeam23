@@ -13,40 +13,54 @@ public class SpeedEvent : Event
 
     // Faire une fonction OnFinish qui sexecute a la fin de mon event
 
-    private void Start()
-    {
-        //baseSpeeds = new float[GameData.i.speedConfigs.Length];
-        //for (int i = 0; i < GameData.i.speedConfigs.Length; i++)
-        //{
-        //    baseSpeeds[i] = GameData.i.speedConfigs[i].speed;
-        //}
-    }
-
     public override void Update()
     {
         base.Update();
 
         if (value)
         {
-            if (speedTimer <= maxSpeedTimer)
+            if (speedTimer <= maxSpeedTimer && !speeding)
             {
                 speedTimer += Time.deltaTime;
 
-                //foreach (ObstacleSpeedConfig config in GameData.i.speedConfigs)
-                //{
-                //    config.speed *= amplifier * speedTimer / maxSpeedTimer;
-                //}
+                foreach (GameObject ast in GameObject.FindGameObjectsWithTag("Rock"))
+                {
+                    ast.GetComponent<ObstacleMovement>().speed = ast.GetComponent<ObstacleMovement>().baseSpeed * amplifier * speedTimer / maxSpeedTimer;
+                }
+                foreach (GameObject ast in GameObject.FindGameObjectsWithTag("Big Rock"))
+                {
+                    ast.GetComponent<ObstacleMovement>().speed = ast.GetComponent<ObstacleMovement>().baseSpeed * amplifier * speedTimer / maxSpeedTimer;
+                }
+                foreach (GameObject ast in GameObject.FindGameObjectsWithTag("Debris"))
+                {
+                    ast.GetComponent<ObstacleMovement>().speed = ast.GetComponent<ObstacleMovement>().baseSpeed * amplifier * speedTimer / maxSpeedTimer;
+                }
+            }
+            else
+            {
+                speeding = true;
             }
 
         }
         else
         {
-            speedTimer = 0f;
-
-            //for (int i = 0; i < GameData.i.speedConfigs.Length; i++)
-            //{
-            //    GameData.i.speedConfigs[i].speed = baseSpeeds[i];
-            //}
+            if (speeding)
+            {
+                speeding = false;
+                speedTimer = 0f;
+                foreach (GameObject ast in GameObject.FindGameObjectsWithTag("Rock"))
+                {
+                    ast.GetComponent<ObstacleMovement>().speed = ast.GetComponent<ObstacleMovement>().baseSpeed;
+                }
+                foreach (GameObject ast in GameObject.FindGameObjectsWithTag("Big Rock"))
+                {
+                    ast.GetComponent<ObstacleMovement>().speed = ast.GetComponent<ObstacleMovement>().baseSpeed;
+                }
+                foreach (GameObject ast in GameObject.FindGameObjectsWithTag("Debris"))
+                {
+                    ast.GetComponent<ObstacleMovement>().speed = ast.GetComponent<ObstacleMovement>().baseSpeed;
+                }
+            }
         }
     }
 }
