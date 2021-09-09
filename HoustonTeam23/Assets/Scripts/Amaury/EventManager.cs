@@ -144,7 +144,7 @@ public class EventManager : MonoBehaviour
 
     //private void flipCamera()
     //{
-    //    GameObject camera = flipCameraEvent.camera;
+    //    GameObject camera = Camera.main.gameObject;
     //    if (flipCameraEvent.value)
     //    {
     //        if (camera.transform.eulerAngles.z == 0 || flipCameraEvent.flipRotate)
