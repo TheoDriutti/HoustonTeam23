@@ -16,10 +16,8 @@ public class Event : MonoBehaviour
 
     public virtual void Update()
     {
-        Debug.Log("lol: " + this);
         if (value)
         {
-            Debug.Log("enter");
             timer += Time.deltaTime;
 
             if (timer >= maxTimer)
@@ -29,8 +27,9 @@ public class Event : MonoBehaviour
                 spawner.spawn = true;
             }
         }
-        else {
-            spawner.manager.ui.DisplayIcon(this,false);
+        else
+        {
+            spawner.manager.ui.DisplayIcon(this, false);
         }
     }
 }
