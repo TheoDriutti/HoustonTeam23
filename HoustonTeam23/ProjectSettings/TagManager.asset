@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Rock
   - Big Rock
+  - Debris
   layers:
   - Default
   - TransparentFX
