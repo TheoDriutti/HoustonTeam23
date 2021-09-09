@@ -28,7 +28,7 @@ public class EventNaturalSpawner : MonoBehaviour
 
             if (lastEvent != null && lastEvent.id == currentEvent.id) return;
 
-            manager.ui.DisplayIcon(currentEvent);
+            manager.ui.DisplayIcon(currentEvent,false);
             lastEvent = currentEvent;
             spawn = false;
         }

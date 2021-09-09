@@ -16,10 +16,8 @@ public class Event : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("lol: " + this);
         if (value)
         {
-            Debug.Log("enter");
             timer += Time.deltaTime;
 
             if (timer >= maxTimer)
