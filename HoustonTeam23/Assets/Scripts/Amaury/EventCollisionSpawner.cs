@@ -10,6 +10,8 @@ public class EventCollisionSpawner : MonoBehaviour
     private Event currentEvent;
     public EventManager manager;
 
+    // Faire un lastEvent
+
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Rock" || collider.gameObject.tag == "Big Rock")
@@ -19,6 +21,8 @@ public class EventCollisionSpawner : MonoBehaviour
 
             collider.GetComponent<ObstacleMovement>().enabled = false;
             collider.transform.localPosition = Vector3.zero;
+
+            ScoreCounter.instance.dodge = 0;
 
             if (currentEvent != null && currentEvent.value) currentEvent.value = false;
 

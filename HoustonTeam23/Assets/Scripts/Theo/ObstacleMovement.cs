@@ -8,6 +8,7 @@ public class ObstacleMovement : MonoBehaviour
 
     public float speed;
     public float angularSpeed;
+    public int id;
 
     private void Awake()
     {

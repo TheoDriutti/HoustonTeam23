@@ -39,12 +39,14 @@ public class Spawner : MonoBehaviour
             GameObject rock = Instantiate(baseRockPrefab, baseRockStorage);
             rock.GetComponent<MeshFilter>().mesh = meshes[Random.Range(0, meshes.Length)];
             rock.GetComponent<MeshRenderer>().material = materials[Random.Range(0, materials.Length)];
+            rock.GetComponent<ObstacleMovement>().id = i;
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject bigRock = Instantiate(bigRockPrefab, bigRockStorage);
             bigRock.GetComponent<MeshFilter>().mesh = meshes[Random.Range(0, meshes.Length)];
             bigRock.GetComponent<MeshRenderer>().material = materials[Random.Range(0, materials.Length)];
+            bigRock.GetComponent<ObstacleMovement>().id = 50 + i;
         }
 
         bigRockSpawnTimer = bigRockSpawnCooldown;
