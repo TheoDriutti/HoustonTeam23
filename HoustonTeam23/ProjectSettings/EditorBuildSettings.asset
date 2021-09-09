@@ -15,6 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Theo/Gameplay.unity
     guid: e8c86fdb9910d3349a9ded91b51cc390
   - enabled: 1
-    path: Assets/Scenes/Theo/LD_Gameplay.unity
+    path: Assets/Scenes/Theo/MASTER.unity
     guid: 85887289385cbd246a8f8c901e61dcc7
   m_configObjects: {}
