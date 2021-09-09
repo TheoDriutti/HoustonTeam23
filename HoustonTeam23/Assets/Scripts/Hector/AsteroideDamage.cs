@@ -6,7 +6,9 @@ using UnityEngine.VFX;
 public class AsteroideDamage : MonoBehaviour
 {
     public GameObject explosion;
+    public GameObject[] smoke;
     public Transform explosionPos;
+    public int index = 0;
 
 
 
@@ -19,6 +21,10 @@ public class AsteroideDamage : MonoBehaviour
             Transform Pos = explosionPos.GetChild(Random.Range(0, explosionPos.childCount));
             explosion.transform.position = Pos.transform.position;
             explosion.SetActive(true);
+            Transform SmokePos = explosionPos.GetChild(Random.Range(0, explosionPos.childCount));
+            smoke[index].transform.position = Pos.transform.position;
+            smoke[index].SetActive(true);
+            index++;
         }
     }
 
