@@ -22,7 +22,7 @@ public class EventNaturalSpawner : MonoBehaviour
     {
         if (spawn)
         {
-            //int rand = Random.Range(0, 3);
+            //int rand = Random.Range(0, 2);
             int rand = Random.Range(0, naturalEvents.Count);
             time = Random.Range(timeMin, timeMax);
             currentEvent = naturalEvents[rand];
@@ -38,7 +38,7 @@ public class EventNaturalSpawner : MonoBehaviour
             if (!currentEvent.value)
             {
                 timer += Time.deltaTime;
-                if (timer >= time - 2f) // PAtch quand tu collisionnes et que c deja entrain de flash & désactiver la fin de l'image a la fin
+                if (timer >= time - 2f) // Patch quand tu collisionnes et que c deja entrain de flash & désactiver la fin de l'image a la fin
                     manager.ui.Flash();
 
                 if (timer >= time)
