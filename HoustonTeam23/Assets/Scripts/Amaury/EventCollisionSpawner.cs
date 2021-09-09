@@ -4,39 +4,67 @@ using UnityEngine;
 
 public class EventCollisionSpawner : MonoBehaviour
 {
+    [Header("Explosion/Smoke")]
+    public GameObject explosion;
+    public GameObject[] smoke;
+    public Transform explosionPos;
+    public int index = 0;
 
+    [Header("Events")]
     public List<Event> collisionEvents;
 
     private Event currentEvent;
     public EventManager manager;
 
+    private PlayerController playerController;
+
+    private void Awake()
+    {
+        playerController = GetComponent<PlayerController>();
+    }
+
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Rock" || collider.gameObject.tag == "Big Rock")
         {
-            ShipHealth.instance.TakeDamage(1);
-            StartCoroutine(CameraShake.instance.Shake(.15f, .4f));
+            if (!playerController.hurt)
+            {
+                playerController.hurt = true;
 
-            collider.GetComponent<ObstacleMovement>().enabled = false;
-            collider.transform.localPosition = Vector3.zero;
+                ShipHealth.instance.TakeDamage(1);
 
-            if (currentEvent != null && currentEvent.value) currentEvent.value = false;
+                StartCoroutine(CameraShake.instance.Shake(.15f, .4f));
 
-            if (currentEvent != null && currentEvent.spawner.currentEvent != null) currentEvent.spawner.currentEvent.value = false;
+                Transform Pos = explosionPos.GetChild(Random.Range(0, explosionPos.childCount));
+                explosion.transform.position = Pos.transform.position;
+                explosion.SetActive(true);
+                Transform SmokePos = explosionPos.GetChild(Random.Range(0, explosionPos.childCount));
+                smoke[index].transform.position = Pos.transform.position;
+                smoke[index].SetActive(true);
+                index++;
 
-            int rand = Random.Range(0, 100);
-            if (rand >= 0 && rand < 33)  // premier event 
-                currentEvent = collisionEvents[0];
-            else if (rand >= 33 && rand < 67)  // deuxieme event
-                currentEvent = collisionEvents[1];
-            else if (rand >= 67)  // troisieme event
-                currentEvent = collisionEvents[2];
-            //else  // quatrieme event
-            //    currentEvent = collisionEvents[3];
+                collider.GetComponent<ObstacleMovement>().enabled = false;
+                collider.transform.localPosition = Vector3.zero;
 
-            currentEvent.value = true;
-            manager.ui.DisplayIcon(currentEvent, true);
-            Debug.Log("Event " + currentEvent.name + " activated");
+                if (currentEvent != null && currentEvent.value) currentEvent.value = false;
+
+                if (currentEvent != null && currentEvent.spawner.currentEvent != null) currentEvent.spawner.currentEvent.value = false;
+
+                int rand = Random.Range(0, 100);
+                if (rand >= 0 && rand < 33)  // premier event 
+                    currentEvent = collisionEvents[0];
+                else if (rand >= 33 && rand < 67)  // deuxieme event
+                    currentEvent = collisionEvents[1];
+                else if (rand >= 67)  // troisieme event
+                    currentEvent = collisionEvents[2];
+                //else  // quatrieme event
+                //    currentEvent = collisionEvents[3];
+
+                currentEvent.value = true;
+                manager.ui.DisplayIcon(currentEvent, true);
+                Debug.Log("Event " + currentEvent.name + " activated");
+
+            }
         }
     }
 }

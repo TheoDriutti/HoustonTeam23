@@ -23,6 +23,6 @@ public class GameOverMenu : MonoBehaviour
     public void Replay()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Gameplay");
+        SceneManager.LoadScene("LD_Gameplay");
     }
 }
