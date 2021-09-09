@@ -38,7 +38,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
         horiInput = horizontalInversion.value ? -Input.GetAxis("Horizontal") : Input.GetAxis("Horizontal");
         vertiInput = verticalInversion.value ? -Input.GetAxis("Vertical") : Input.GetAxis("Vertical");
 
@@ -99,7 +98,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(horiNewPos, transform.position.y, transform.position.z);
 
             float shipAngle = turnBehavior.Evaluate(Mathf.Abs(horiNewPos) / GameData.i.horizontalGameSize) * maxTurnRotation * Mathf.Sign(horiNewPos);
-            transform.rotation = Quaternion.Euler(0, 0, shipAngle);
+            transform.localRotation = Quaternion.Euler(0, shipAngle, 0);
         }
     }
 

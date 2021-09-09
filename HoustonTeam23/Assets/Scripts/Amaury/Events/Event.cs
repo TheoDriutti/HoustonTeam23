@@ -8,7 +8,7 @@ public class Event : MonoBehaviour
     public string name;
     public int id;
     public bool value;
-    private float timer;
+    private float timer = 0f;
     public float maxTimer;
     public int percentage;
     public Sprite icon;
@@ -22,13 +22,10 @@ public class Event : MonoBehaviour
 
             if (timer >= maxTimer)
             {
-                timer = 0;
+                timer = 0f;
                 value = false;
                 spawner.spawn = true;
-                OnFinish();
             }
         }
     }
-
-    void OnFinish() {}
 }

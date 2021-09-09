@@ -10,22 +10,27 @@ public class FlipCameraEvent : Event
     private void Update()
     {
 
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            value = true;
+        }
         GameObject camera = Camera.main.gameObject;
         if (value)
         {
-            if (camera.transform.eulerAngles.z == 0 || flipRotate)
+            if (Mathf.Abs(camera.transform.eulerAngles.z) <= 2f || Mathf.Abs(camera.transform.eulerAngles.z) >= 357 || flipRotate)
             {
                 camera.transform.rotation = Quaternion.RotateTowards(camera.transform.rotation, Quaternion.Euler(0, 0, 180), flipSpeed * Time.deltaTime);
+
                 flipRotate = true;
 
-                if (camera.transform.eulerAngles.z == 180)
+                if (178 <= Mathf.Abs(camera.transform.eulerAngles.z) && Mathf.Abs(camera.transform.eulerAngles.z) <= 182)
                     flipRotate = false;
 
             }
         }
         else
         {
-            if (camera.transform.eulerAngles.z == 180 || flipRotate)
+            if ((178 <= Mathf.Abs(camera.transform.eulerAngles.z) && Mathf.Abs(camera.transform.eulerAngles.z) <= 182) || flipRotate)
             {
                 camera.transform.rotation = Quaternion.RotateTowards(camera.transform.rotation, Quaternion.Euler(0, 0, 0), flipSpeed * Time.deltaTime);
                 flipRotate = true;

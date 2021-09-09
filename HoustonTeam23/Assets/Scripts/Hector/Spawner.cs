@@ -109,6 +109,7 @@ public class Spawner : MonoBehaviour
             rock.SetAsLastSibling();
 
             rock.GetComponent<ObstacleMovement>().enabled = true;
+            rock.transform.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             rock.transform.position = spawnPosition;
         }
     }
@@ -123,6 +124,7 @@ public class Spawner : MonoBehaviour
         rock.SetAsLastSibling();
         rock.GetComponent<ObstacleMovement>().enabled = true;
         rock.transform.position = spawnPosition;
+        rock.transform.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
     }
 
     private void DebrisActivation()
