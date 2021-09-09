@@ -22,6 +22,12 @@ public class Spawner : MonoBehaviour
     public GameObject debrisPrefab;
     public float debrisSpawnCooldown;
 
+    [Header("Asteroid meshes")]
+    public Mesh[] meshes;
+
+    [Header("Asteroid materials")]
+    public Material[] materials;
+
     private float baseRockSpawnTimer = 0f;
     private float bigRockSpawnTimer;
     private float debrisSpawnTimer;
@@ -31,12 +37,14 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < 50; i++)
         {
             GameObject rock = Instantiate(baseRockPrefab, baseRockStorage);
-            // random mesh;
+            rock.GetComponent<MeshFilter>().mesh = meshes[Random.Range(0, meshes.Length)];
+            rock.GetComponent<MeshRenderer>().material = materials[Random.Range(0, materials.Length)];
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject bigRock = Instantiate(bigRockPrefab, bigRockStorage);
-            // random mesh;
+            bigRock.GetComponent<MeshFilter>().mesh = meshes[Random.Range(0, meshes.Length)];
+            bigRock.GetComponent<MeshRenderer>().material = materials[Random.Range(0, materials.Length)];
         }
 
         bigRockSpawnTimer = bigRockSpawnCooldown;
@@ -101,6 +109,7 @@ public class Spawner : MonoBehaviour
             rock.SetAsLastSibling();
 
             rock.GetComponent<ObstacleMovement>().enabled = true;
+            rock.transform.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
             rock.transform.position = spawnPosition;
         }
     }
@@ -115,6 +124,7 @@ public class Spawner : MonoBehaviour
         rock.SetAsLastSibling();
         rock.GetComponent<ObstacleMovement>().enabled = true;
         rock.transform.position = spawnPosition;
+        rock.transform.rotation = Quaternion.Euler(Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
     }
 
     private void DebrisActivation()

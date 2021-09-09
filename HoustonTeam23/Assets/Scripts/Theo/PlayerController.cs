@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private static PlayerController _i;
     public static PlayerController i { get { return _i; } }
 
-    
+
     public bool hurt;
     private float hurtTimer, flashingTimer;
     public float maxHurtTimer, flashingTime;
@@ -31,7 +31,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
         if (_i != null && _i != this)
             Destroy(gameObject);
         _i = this;
@@ -39,26 +38,25 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
         horiInput = horizontalInversion.value ? -Input.GetAxis("Horizontal") : Input.GetAxis("Horizontal");
         vertiInput = verticalInversion.value ? -Input.GetAxis("Vertical") : Input.GetAxis("Vertical");
 
 
         if (Mathf.Abs(horiInput) > 0f && !freeze.value)
         {
-            if(tap.value) 
-                if(tap.counter < tap.maxCounter) return;
-            
+            if (tap.value)
+                if (tap.counter < tap.maxCounter) return;
+
             if (inputDelay.value)
             {
-                if(inputDelay.timer < inputDelay.duration) 
+                if (inputDelay.delayTimer < inputDelay.duration)
                 {
-                    inputDelay.timer += Time.deltaTime;
+                    inputDelay.delayTimer += Time.deltaTime;
                     return;
                 }
 
                 MoveVertical();
-                inputDelay.timer = 0;
+                inputDelay.delayTimer = 0;
             }
             else
             {
@@ -68,19 +66,19 @@ public class PlayerController : MonoBehaviour
 
         if (Mathf.Abs(vertiInput) > 0f && !freeze.value)
         {
-            if(tap.value) 
-                if(tap.counter < tap.maxCounter) return;
+            if (tap.value)
+                if (tap.counter < tap.maxCounter) return;
 
             if (inputDelay.value)
             {
-                if(inputDelay.timer < inputDelay.duration) 
+                if (inputDelay.delayTimer < inputDelay.duration)
                 {
-                    inputDelay.timer += Time.deltaTime;
+                    inputDelay.delayTimer += Time.deltaTime;
                     return;
                 }
 
                 MoveVertical();
-                inputDelay.timer = 0;
+                inputDelay.delayTimer = 0;
             }
             else
             {
@@ -100,7 +98,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(horiNewPos, transform.position.y, transform.position.z);
 
             float shipAngle = turnBehavior.Evaluate(Mathf.Abs(horiNewPos) / GameData.i.horizontalGameSize) * maxTurnRotation * Mathf.Sign(horiNewPos);
-            transform.rotation = Quaternion.Euler(0, 0, shipAngle);
+            transform.localRotation = Quaternion.Euler(0, shipAngle, 0);
         }
     }
 
@@ -121,21 +119,21 @@ public class PlayerController : MonoBehaviour
             hurtTimer += Time.deltaTime;
 
             if (hurtTimer < maxHurtTimer)
-           {
-              flashingTimer += Time.deltaTime;
+            {
+                flashingTimer += Time.deltaTime;
 
                 if (flashingTimer >= flashingTime)
                 {
                     foreach (MeshRenderer renderer in spatialship)
                         renderer.enabled = !renderer.enabled;
 
-                   flashingTimer = 0;
+                    flashingTimer = 0;
                 }
 
             }
             else
             {
-               foreach (MeshRenderer renderer in spatialship)
+                foreach (MeshRenderer renderer in spatialship)
                     renderer.enabled = true;
 
                 hurt = false;
