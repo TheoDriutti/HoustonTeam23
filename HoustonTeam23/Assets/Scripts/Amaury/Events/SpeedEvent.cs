@@ -16,22 +16,22 @@ public class SpeedEvent : Event
 
    void Update() {
        if (value)
-   {
-       float step = maxSpeedTimer / 5;
+      {  
+         float step = maxSpeedTimer / 5;
 
-       if (speedTimer <= maxSpeedTimer)
-         {
-           speedTimer += Time.deltaTime;
-           stepTimer += Time.deltaTime;
-
-          if (stepTimer >= step - 0.05f)
+         if (speedTimer <= maxSpeedTimer)
             {
-               pController.horizontalSpeed += amplifier / 5;
-               pController.verticalSpeed += amplifier / 5;
-               index++;
-               stepTimer = 0;
-            }
-        }
+            speedTimer += Time.deltaTime;
+            stepTimer += Time.deltaTime;
+
+            if (stepTimer >= step - 0.05f)
+               {
+                  pController.horizontalSpeed += amplifier / 5;
+                  pController.verticalSpeed += amplifier / 5;
+                  index++;
+                  stepTimer = 0;
+               }
+         }
       }
    }
 }

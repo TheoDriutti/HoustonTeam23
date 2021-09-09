@@ -7,7 +7,7 @@ public class EventNaturalSpawner : MonoBehaviour
 
     public List<Event> naturalEvents;
 
-    private Event currentEvent;
+    public Event currentEvent;
     private Event lastEvent;
 
     public bool spawn;

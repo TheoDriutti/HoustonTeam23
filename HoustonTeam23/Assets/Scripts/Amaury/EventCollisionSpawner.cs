@@ -13,6 +13,10 @@ public class EventCollisionSpawner : MonoBehaviour {
         if(collision.gameObject.tag == "Player") {
             int rand = Random.Range(0,100);
 
+            if(currentEvent != null && currentEvent.value) currentEvent.value = false;
+
+            if(currentEvent != null && currentEvent.spawner.currentEvent != null) currentEvent.spawner.currentEvent.value = false;
+
             if(rand >= 0 && rand < 35)  // premier event 
                 currentEvent = collisionEvents[0];
             else if(rand >= 35 && rand < 70)  // deuxieme event

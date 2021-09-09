@@ -25,10 +25,8 @@ public class Event : MonoBehaviour
                 timer = 0;
                 value = false;
                 spawner.spawn = true;
-                OnFinish();
             }
         }
     }
 
-    void OnFinish() {}
 }
