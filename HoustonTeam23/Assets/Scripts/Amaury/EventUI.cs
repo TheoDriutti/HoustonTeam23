@@ -33,6 +33,6 @@ public class EventUI : MonoBehaviour
     }
 
     public void DisplayIcon(Event currentEvent) {
-        malus.sprite = currentEvent.icon;
+         malus.sprite = currentEvent.icon;
     }
 }

@@ -8,6 +8,12 @@ public class ShipHealth : MonoBehaviour
     public int currentHealth;
 
     public HealthBar healthBar;
+    public static ShipHealth instance;
+
+    public void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -15,16 +21,7 @@ public class ShipHealth : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            TakeDamage(1);
-        }
-        
-    }
-
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
 

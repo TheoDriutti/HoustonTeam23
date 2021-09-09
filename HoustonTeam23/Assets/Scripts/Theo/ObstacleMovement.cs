@@ -6,8 +6,8 @@ public class ObstacleMovement : MonoBehaviour
 {
     public ObstacleSpeedConfig config;
 
-    private float speed;
-    private float angularSpeed;
+    public float speed;
+    public float angularSpeed;
 
     private void Awake()
     {
