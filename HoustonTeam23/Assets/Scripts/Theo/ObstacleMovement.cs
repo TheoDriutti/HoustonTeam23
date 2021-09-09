@@ -32,5 +32,14 @@ public class ObstacleMovement : MonoBehaviour
             this.enabled = false;
             transform.localPosition = Vector3.zero;
         }
+
+        if (PlayerController.i.transform.position.z > transform.position.z)
+        {
+            //Debug.Log("changeAlpha");
+
+            //Renderer r = GetComponent<Renderer>();
+            //Color materialColor = r.material.color;
+            //r.material.color = new Color(materialColor.r, materialColor.g, materialColor.b, 0.5f);
+        }
     }
 }

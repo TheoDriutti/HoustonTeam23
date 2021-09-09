@@ -137,6 +137,6 @@ public class Spawner : MonoBehaviour
     {
         GameObject debris = Instantiate(debrisPrefab, baseRockStorage);
         debris.GetComponent<ObstacleMovement>().enabled = true;
-        debris.transform.position = transform.position;
+        debris.transform.position = new Vector3(0, transform.position.y, 0);
     }
 }

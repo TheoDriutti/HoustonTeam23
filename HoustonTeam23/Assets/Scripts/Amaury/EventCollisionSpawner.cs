@@ -20,6 +20,7 @@ public class EventCollisionSpawner : MonoBehaviour
     private ScoreCounter scoreCounter;
 
     private float lastHitTime = -1f;
+    private float lastMultipTime = -1f;
 
     private void Awake()
     {
@@ -34,10 +35,12 @@ public class EventCollisionSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (Time.time - lastHitTime > scoreCounter.streakInterval)
+        if (Time.time - lastHitTime > scoreCounter.streakInterval && Time.time - lastMultipTime > scoreCounter.streakInterval)
         {
             scoreCounter.streakMultiplier++;
             scoreCounter.UpdateFeedback();
+            lastMultipTime = Time.time;
+
         }
     }
 
