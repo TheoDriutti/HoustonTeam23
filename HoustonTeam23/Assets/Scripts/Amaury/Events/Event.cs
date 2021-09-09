@@ -8,13 +8,13 @@ public class Event : MonoBehaviour
     public string name;
     public int id;
     public bool value;
-    private float timer = 0f;
+    public float timer;
     public float maxTimer;
     public int percentage;
     public Sprite icon;
     public EventNaturalSpawner spawner;
 
-    void Update()
+    public virtual void Update()
     {
         if (value)
         {
@@ -24,6 +24,7 @@ public class Event : MonoBehaviour
             {
                 timer = 0f;
                 value = false;
+                spawner.manager.ui.DisplayIcon(this, false);
                 spawner.spawn = true;
             }
         }

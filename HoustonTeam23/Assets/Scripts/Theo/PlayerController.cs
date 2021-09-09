@@ -41,11 +41,13 @@ public class PlayerController : MonoBehaviour
         horiInput = horizontalInversion.value ? -Input.GetAxis("Horizontal") : Input.GetAxis("Horizontal");
         vertiInput = verticalInversion.value ? -Input.GetAxis("Vertical") : Input.GetAxis("Vertical");
 
+        if (tap.value) {
+            if (tap.counter < tap.maxCounter) return;          
+        }
+
 
         if (Mathf.Abs(horiInput) > 0f && !freeze.value)
         {
-            if (tap.value)
-                if (tap.counter < tap.maxCounter) return;
 
             if (inputDelay.value)
             {
@@ -55,7 +57,7 @@ public class PlayerController : MonoBehaviour
                     return;
                 }
 
-                MoveVertical();
+                MoveHorizontal();
                 inputDelay.delayTimer = 0;
             }
             else
@@ -66,8 +68,6 @@ public class PlayerController : MonoBehaviour
 
         if (Mathf.Abs(vertiInput) > 0f && !freeze.value)
         {
-            if (tap.value)
-                if (tap.counter < tap.maxCounter) return;
 
             if (inputDelay.value)
             {
