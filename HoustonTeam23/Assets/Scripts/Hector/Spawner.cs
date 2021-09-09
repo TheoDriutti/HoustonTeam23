@@ -37,13 +37,17 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < 50; i++)
         {
             GameObject rock = Instantiate(baseRockPrefab, baseRockStorage);
-            rock.GetComponent<MeshFilter>().mesh = meshes[Random.Range(0, meshes.Length)];
+            Mesh newMesh = meshes[Random.Range(0, meshes.Length)];
+            rock.GetComponent<MeshFilter>().mesh = newMesh;
+            rock.GetComponent<MeshCollider>().sharedMesh = newMesh;
             rock.GetComponent<MeshRenderer>().material = materials[Random.Range(0, materials.Length)];
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject bigRock = Instantiate(bigRockPrefab, bigRockStorage);
-            bigRock.GetComponent<MeshFilter>().mesh = meshes[Random.Range(0, meshes.Length)];
+            Mesh newMesh = meshes[Random.Range(0, meshes.Length)];
+            bigRock.GetComponent<MeshFilter>().mesh = newMesh;
+            bigRock.GetComponent<MeshCollider>().sharedMesh = newMesh;
             bigRock.GetComponent<MeshRenderer>().material = materials[Random.Range(0, materials.Length)];
         }
 
