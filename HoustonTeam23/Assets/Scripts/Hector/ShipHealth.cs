@@ -15,15 +15,6 @@ public class ShipHealth : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            TakeDamage(1);
-        }
-        
-    }
-
     void TakeDamage(int damage)
     {
         currentHealth -= damage;
