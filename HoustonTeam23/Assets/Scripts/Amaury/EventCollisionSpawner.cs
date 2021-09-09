@@ -17,16 +17,38 @@ public class EventCollisionSpawner : MonoBehaviour
     public EventManager manager;
 
     private PlayerController playerController;
+    private ScoreCounter scoreCounter;
+
+    private float lastHitTime = -1f;
 
     private void Awake()
     {
         playerController = GetComponent<PlayerController>();
+        scoreCounter = GetComponent<ScoreCounter>();
+    }
+
+    private void Start()
+    {
+        lastHitTime = Time.time;
+    }
+
+    private void Update()
+    {
+        if (Time.time - lastHitTime > scoreCounter.streakInterval)
+        {
+            scoreCounter.streakMultiplier++;
+            scoreCounter.UpdateFeedback();
+        }
     }
 
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.gameObject.tag == "Rock" || collider.gameObject.tag == "Big Rock")
         {
+            lastHitTime = Time.time;
+            scoreCounter.streakMultiplier = 1;
+            scoreCounter.UpdateFeedback();
+
             if (!playerController.hurt)
             {
                 playerController.hurt = true;
