@@ -5,7 +5,7 @@ using UnityEngine;
 public class EventCollisionSpawner : MonoBehaviour
 {
     [Header("Explosion/Smoke")]
-    public GameObject explosion;
+    public GameObject[] explosion;
     public GameObject[] smoke;
     public Transform explosionPos;
     public int index = 0;
@@ -61,8 +61,8 @@ public class EventCollisionSpawner : MonoBehaviour
                 StartCoroutine(CameraShake.instance.Shake(.15f, .4f));
 
                 Transform Pos = explosionPos.GetChild(Random.Range(0, explosionPos.childCount));
-                explosion.transform.position = Pos.transform.position;
-                explosion.SetActive(true);
+                explosion[index].transform.position = Pos.transform.position;
+                explosion[index].SetActive(true);
                 Transform SmokePos = explosionPos.GetChild(Random.Range(0, explosionPos.childCount));
                 smoke[index].transform.position = Pos.transform.position;
                 smoke[index].SetActive(true);
