@@ -4724,7 +4724,7 @@ MonoBehaviour:
   lastKey: 0
   keys: 7a000000710000007300000064000000
   counter: 0
-  maxCounter: 3
+  maxCounter: 2
 --- !u!1 &1813796252
 GameObject:
   m_ObjectHideFlags: 0

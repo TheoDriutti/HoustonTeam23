@@ -129,8 +129,8 @@ public class EventCollisionSpawner : MonoBehaviour
             currentEvent = collisionEvents[1];
         else if (rand >= 67)  // troisieme event
             currentEvent = collisionEvents[2];
-        //else  // quatrieme event
-        //    currentEvent = collisionEvents[3];
+        else  // quatrieme event
+            currentEvent = collisionEvents[3];
     }
 
 }
