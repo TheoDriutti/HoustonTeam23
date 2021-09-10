@@ -37,19 +37,19 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < 100; i++)
         {
             GameObject rock = Instantiate(baseRockPrefab, baseRockStorage);
-            Mesh newMesh = meshes[Random.Range(0, meshes.Length)];
-            rock.GetComponent<MeshFilter>().mesh = newMesh;
-            rock.GetComponent<MeshCollider>().sharedMesh = newMesh;
-            rock.GetComponent<MeshRenderer>().material = materials[Random.Range(0, materials.Length)];
+            int rockIndex = Random.Range(0, meshes.Length);
+            rock.GetComponent<MeshFilter>().mesh = meshes[rockIndex];
+            rock.GetComponent<MeshCollider>().sharedMesh = meshes[rockIndex];
+            rock.GetComponent<MeshRenderer>().material = materials[rockIndex];
             rock.GetComponent<ObstacleMovement>().id = i;
         }
         for (int i = 0; i < 10; i++)
         {
             GameObject bigRock = Instantiate(bigRockPrefab, bigRockStorage);
-            Mesh newMesh = meshes[Random.Range(0, meshes.Length)];
-            bigRock.GetComponent<MeshFilter>().mesh = newMesh;
-            bigRock.GetComponent<MeshCollider>().sharedMesh = newMesh;
-            bigRock.GetComponent<MeshRenderer>().material = materials[Random.Range(0, materials.Length)];
+            int rockIndex = Random.Range(0, meshes.Length);
+            bigRock.GetComponent<MeshFilter>().mesh = meshes[rockIndex];
+            bigRock.GetComponent<MeshCollider>().sharedMesh = meshes[rockIndex];
+            bigRock.GetComponent<MeshRenderer>().material = materials[rockIndex];
             bigRock.GetComponent<ObstacleMovement>().id = 50 + i;
         }
 
