@@ -695,6 +695,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verticalSpeed: 15
   horizontalSpeed: 20
+  shipElements: {fileID: 0}
   maxTurnRotation: 25
   turnBehavior:
     serializedVersion: 2
@@ -808,7 +809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da1e2bc40a7256242aab1ccaf53f5f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 1148873997}
+  explosion: []
   smoke:
   - {fileID: 1458010872}
   - {fileID: 339901440}
@@ -2640,11 +2641,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a416f4926c961624f9e301343e1c6aa2, type: 3}
---- !u!1 &1148873997 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3117991398547572022, guid: a416f4926c961624f9e301343e1c6aa2, type: 3}
-  m_PrefabInstance: {fileID: 1148873996}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1148873998 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3117991398547572019, guid: a416f4926c961624f9e301343e1c6aa2, type: 3}
@@ -4778,7 +4774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2024710566
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6567,7 +6563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.4392157, g: 0.11406189, b: 0.11406189, a: 1}
+  m_Color: {r: 0.4392157, g: 0.11406189, b: 0.11406189, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
