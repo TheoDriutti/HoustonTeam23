@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 100; i++)
         {
             GameObject rock = Instantiate(baseRockPrefab, baseRockStorage);
             Mesh newMesh = meshes[Random.Range(0, meshes.Length)];
@@ -137,6 +137,6 @@ public class Spawner : MonoBehaviour
     {
         GameObject debris = Instantiate(debrisPrefab, baseRockStorage);
         debris.GetComponent<ObstacleMovement>().enabled = true;
-        debris.transform.position = transform.position;
+        debris.transform.position = new Vector3(0, transform.position.y, 0);
     }
 }

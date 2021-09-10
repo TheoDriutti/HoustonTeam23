@@ -19,15 +19,14 @@ public class PlayerController : MonoBehaviour
     private float horiInput;
     private float vertiInput;
 
-    //singleton
-    private static PlayerController _i;
-    public static PlayerController i { get { return _i; } }
-
-
     public bool hurt;
     private float hurtTimer, flashingTimer;
     public float maxHurtTimer, flashingTime;
     public MeshRenderer[] spatialship;
+
+    //singleton
+    private static PlayerController _i;
+    public static PlayerController i { get { return _i; } }
 
     private void Awake()
     {
@@ -41,8 +40,9 @@ public class PlayerController : MonoBehaviour
         horiInput = horizontalInversion.value ? -Input.GetAxis("Horizontal") : Input.GetAxis("Horizontal");
         vertiInput = verticalInversion.value ? -Input.GetAxis("Vertical") : Input.GetAxis("Vertical");
 
-        if (tap.value) {
-            if (tap.counter < tap.maxCounter) return;          
+        if (tap.value)
+        {
+            if (tap.counter < tap.maxCounter) return;
         }
 
 
