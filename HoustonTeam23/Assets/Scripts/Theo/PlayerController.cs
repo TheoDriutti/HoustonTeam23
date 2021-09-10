@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float verticalSpeed;
     public float horizontalSpeed;
 
+    public GameObject shipElements;
+
     public float maxTurnRotation = 35f;
     public AnimationCurve turnBehavior;
 
@@ -40,33 +42,36 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if(BeginAnimation.instance.runAnim)
+        if (BeginAnimation.instance.runAnim)
             return;
 
         horiInput = horizontalInversion.value ? -Input.GetAxis("Horizontal") : Input.GetAxis("Horizontal");
         vertiInput = verticalInversion.value ? -Input.GetAxis("Vertical") : Input.GetAxis("Vertical");
 
-        if(acceleration.value) {
+        if (acceleration.value)
+        {
             EventAudio.instance.acceleration.Play();
-            if(EventAudio.instance.moove_reverse.isPlaying) EventAudio.instance.moove_reverse.Stop();
-            if(EventAudio.instance.moove.isPlaying) EventAudio.instance.moove.Stop();
+            if (EventAudio.instance.moove_reverse.isPlaying) EventAudio.instance.moove_reverse.Stop();
+            if (EventAudio.instance.moove.isPlaying) EventAudio.instance.moove.Stop();
             return;
         }
 
-        if(deceleration.value) {
+        if (deceleration.value)
+        {
             EventAudio.instance.deceleration.Play();
-            if(EventAudio.instance.moove_reverse.isPlaying) EventAudio.instance.moove_reverse.Stop();
-            if(EventAudio.instance.moove.isPlaying) EventAudio.instance.moove.Stop();
+            if (EventAudio.instance.moove_reverse.isPlaying) EventAudio.instance.moove_reverse.Stop();
+            if (EventAudio.instance.moove.isPlaying) EventAudio.instance.moove.Stop();
             return;
         }
 
-        if(horizontalInversion.value || verticalInversion.value && !EventAudio.instance.moove_reverse.isPlaying)  EventAudio.instance.moove_reverse.Play();
-        
-        else if(!EventAudio.instance.moove.isPlaying)  EventAudio.instance.moove.Play();
-        
+        if (horizontalInversion.value || verticalInversion.value && !EventAudio.instance.moove_reverse.isPlaying) EventAudio.instance.moove_reverse.Play();
 
-        if (tap.value) {
-            if (tap.counter < tap.maxCounter) return;          
+        else if (!EventAudio.instance.moove.isPlaying) EventAudio.instance.moove.Play();
+
+
+        if (tap.value)
+        {
+            if (tap.counter < tap.maxCounter) return;
         }
 
 
@@ -150,7 +155,7 @@ public class PlayerController : MonoBehaviour
                 {
                     foreach (MeshRenderer renderer in spatialship)
                         renderer.enabled = !renderer.enabled;
-
+                    shipElements.SetActive(false);
                     flashingTimer = 0;
                 }
 
@@ -160,6 +165,7 @@ public class PlayerController : MonoBehaviour
                 foreach (MeshRenderer renderer in spatialship)
                     renderer.enabled = true;
 
+                shipElements.SetActive(true);
                 hurt = false;
                 hurtTimer = 0;
             }

@@ -27,6 +27,6 @@ public class GameOverMenu : MonoBehaviour
     public void Replay()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("LD_Gameplay");
+        SceneManager.LoadScene(1);
     }
 }

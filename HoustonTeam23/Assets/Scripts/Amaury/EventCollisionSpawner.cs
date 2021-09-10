@@ -5,7 +5,7 @@ using UnityEngine;
 public class EventCollisionSpawner : MonoBehaviour
 {
     [Header("Explosion/Smoke")]
-    public GameObject explosion;
+    public GameObject[] explosion;
     public GameObject[] smoke;
     public Transform explosionPos;
     public int index = 0;
@@ -13,7 +13,7 @@ public class EventCollisionSpawner : MonoBehaviour
     [Header("Events")]
     public List<Event> collisionEvents;
 
-    private Event currentEvent,lastEvent;
+    private Event currentEvent, lastEvent;
     public EventManager manager;
 
     private PlayerController playerController;
@@ -36,7 +36,7 @@ public class EventCollisionSpawner : MonoBehaviour
 
     private void Update()
     {
-        if(BeginAnimation.instance.runAnim) return;
+        if (BeginAnimation.instance.runAnim) return;
 
         if (Time.time - lastHitTime > scoreCounter.streakInterval && Time.time - lastMultipTime > scoreCounter.streakInterval)
         {
@@ -46,7 +46,7 @@ public class EventCollisionSpawner : MonoBehaviour
 
         }
 
-        
+
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -59,28 +59,32 @@ public class EventCollisionSpawner : MonoBehaviour
 
                 scoreCounter.streakMultiplier = 0;
                 ShipHealth.instance.TakeDamage(1);
-               // impactSound.Play();
+                // impactSound.Play();
 
-                if(ShipHealth.instance.currentHealth == 0) 
-                   EventAudio.instance.explosion.Play();
-                
-               
+                if (ShipHealth.instance.currentHealth == 0)
+                    EventAudio.instance.explosion.Play();
+
+
 
                 StartCoroutine(CameraShake.instance.Shake(.15f, .4f));
 
                 Transform Pos = explosionPos.GetChild(Random.Range(0, explosionPos.childCount));
-                explosion.transform.position = Pos.transform.position;
-                explosion.SetActive(true);
-                
-                if(ShipHealth.instance.currentHealth <= 2) {
+                explosion[index].transform.position = Pos.transform.position;
+                explosion[index].SetActive(true);
+
+                if (ShipHealth.instance.currentHealth <= 2)
+                {
                     Transform SmokePos = explosionPos.GetChild(Random.Range(0, explosionPos.childCount));
                     smoke[index].transform.position = Pos.transform.position;
                     smoke[index].SetActive(true);
-                    index++;
                     EventAudio.instance.impactLowHealth.Play();
                 }
-                else  EventAudio.instance.impactFullHealth.Play();
-                
+                else
+                {
+                    EventAudio.instance.impactFullHealth.Play();
+                }
+                index++;
+
 
 
                 collider.GetComponent<ObstacleMovement>().enabled = false;
@@ -92,8 +96,10 @@ public class EventCollisionSpawner : MonoBehaviour
 
                 RandomEvent();
 
-                if(currentEvent != null && lastEvent != null ) {
-                    while(currentEvent.id == lastEvent.id) {
+                if (currentEvent != null && lastEvent != null)
+                {
+                    while (currentEvent.id == lastEvent.id)
+                    {
                         RandomEvent();
                     }
                 }
@@ -106,14 +112,16 @@ public class EventCollisionSpawner : MonoBehaviour
             }
         }
 
-        if(collider.gameObject.tag == "BlackHole") {
-            if(!playerController.hurt) 
+        if (collider.gameObject.tag == "Black Hole")
+        {
+            if (!playerController.hurt)
                 ShipHealth.instance.TakeDamage(5);
-            
+
         }
     }
 
-    private void RandomEvent() {
+    private void RandomEvent()
+    {
         int rand = Random.Range(0, 100);
         if (rand >= 0 && rand < 33)  // premier event 
             currentEvent = collisionEvents[0];
@@ -122,7 +130,7 @@ public class EventCollisionSpawner : MonoBehaviour
         else if (rand >= 67)  // troisieme event
             currentEvent = collisionEvents[2];
         //else  // quatrieme event
-            //    currentEvent = collisionEvents[3];
+        //    currentEvent = collisionEvents[3];
     }
 
 }
