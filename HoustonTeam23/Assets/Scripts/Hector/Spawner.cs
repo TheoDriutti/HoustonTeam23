@@ -22,6 +22,10 @@ public class Spawner : MonoBehaviour
     public GameObject debrisPrefab;
     public float debrisSpawnCooldown;
 
+    //[Header("Trou Noir")]
+    //public GameObject trouNoirPrefab;
+    //public float trouNoirSpawnCooldown;
+
     [Header("Asteroid meshes")]
     public Mesh[] meshes;
 
@@ -31,6 +35,7 @@ public class Spawner : MonoBehaviour
     private float baseRockSpawnTimer = 0f;
     private float bigRockSpawnTimer;
     private float debrisSpawnTimer;
+    //private float trouNoirSpawnTimer;
 
     private void Awake()
     {
@@ -55,6 +60,7 @@ public class Spawner : MonoBehaviour
 
         bigRockSpawnTimer = bigRockSpawnCooldown;
         debrisSpawnTimer = debrisSpawnCooldown;
+        //trouNoirSpawnTimer = trouNoirSpawnCooldown;
     }
 
     void Update()
@@ -62,6 +68,7 @@ public class Spawner : MonoBehaviour
         BaseRockSpawnUpdate();
         BigRockSpawnUpdate();
         DebrisSpawnUpdate();
+        //TrouNoirSpawnUpdate();
     }
 
     private void BaseRockSpawnUpdate()
@@ -103,6 +110,19 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    //private void TrouNoirSpawnUpdate()
+    //{
+    //    if (trouNoirSpawnTimer <= 0f)
+    //    {
+    //        TrouNoirActivation();
+    //        trouNoirSpawnTimer = trouNoirSpawnCooldown;
+    //    }
+    //    else
+    //    {
+    //        trouNoirSpawnTimer -= Time.deltaTime;
+    //    }
+    //}
+
     private void SimpleRockActivation()
     {
         for (int i = Random.Range(1, baseRockMaxNumberPerWave); i > 0; i--)
@@ -139,4 +159,15 @@ public class Spawner : MonoBehaviour
         debris.GetComponent<ObstacleMovement>().enabled = true;
         debris.transform.position = new Vector3(0, transform.position.y, 0);
     }
+
+    //private void TrouNoirActivation()
+    //{
+    //    Vector3 spawnPosition = transform.position;
+    //    spawnPosition.x += Random.Range(-(GameData.i.horizontalGameSize - 1), GameData.i.horizontalGameSize - 1);
+    //    spawnPosition.y = Random.Range(-(GameData.i.verticalGameSize.x - 1), GameData.i.verticalGameSize.y - 1);
+
+    //    GameObject trouNoir = Instantiate(trouNoirPrefab, baseRockStorage);
+    //    trouNoir.GetComponent<ObstacleMovement>().enabled = true;
+    //    trouNoir.transform.position = spawnPosition;
+    //}
 }

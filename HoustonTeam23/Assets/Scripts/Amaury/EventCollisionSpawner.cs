@@ -112,7 +112,7 @@ public class EventCollisionSpawner : MonoBehaviour
             }
         }
 
-        if (collider.gameObject.tag == "BlackHole")
+        if (collider.gameObject.tag == "Black Hole")
         {
             if (!playerController.hurt)
                 ShipHealth.instance.TakeDamage(5);
