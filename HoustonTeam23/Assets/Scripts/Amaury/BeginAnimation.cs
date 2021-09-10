@@ -61,7 +61,7 @@ public class BeginAnimation : MonoBehaviour
             {
                 if (finishDialog)
                 {
-                    if (Input.GetKeyDown(KeyCode.E))
+                    if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Mouse0))
                     {
                         if (dialogLength != 3)
                         {

@@ -65,6 +65,8 @@ public class Spawner : MonoBehaviour
 
     void Update()
     {
+        if (BeginAnimation.instance.runAnim)
+            return;
         BaseRockSpawnUpdate();
         BigRockSpawnUpdate();
         DebrisSpawnUpdate();

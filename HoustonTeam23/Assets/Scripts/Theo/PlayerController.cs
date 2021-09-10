@@ -56,13 +56,6 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (deceleration.value)
-        {
-            EventAudio.instance.deceleration.Play();
-            if (EventAudio.instance.moove_reverse.isPlaying) EventAudio.instance.moove_reverse.Stop();
-            if (EventAudio.instance.moove.isPlaying) EventAudio.instance.moove.Stop();
-            return;
-        }
 
         if (horizontalInversion.value || verticalInversion.value && !EventAudio.instance.moove_reverse.isPlaying) EventAudio.instance.moove_reverse.Play();
 
