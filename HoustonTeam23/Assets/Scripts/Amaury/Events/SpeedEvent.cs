@@ -25,15 +25,15 @@ public class SpeedEvent : Event
 
                 foreach (GameObject ast in GameObject.FindGameObjectsWithTag("Rock"))
                 {
-                    ast.GetComponent<ObstacleMovement>().speed = ast.GetComponent<ObstacleMovement>().baseSpeed * amplifier * speedTimer / maxSpeedTimer;
+                    ast.GetComponent<ObstacleMovement>().speed = ast.GetComponent<ObstacleMovement>().baseSpeed + amplifier * speedTimer / maxSpeedTimer;
                 }
                 foreach (GameObject ast in GameObject.FindGameObjectsWithTag("Big Rock"))
                 {
-                    ast.GetComponent<ObstacleMovement>().speed = ast.GetComponent<ObstacleMovement>().baseSpeed * amplifier * speedTimer / maxSpeedTimer;
+                    ast.GetComponent<ObstacleMovement>().speed = ast.GetComponent<ObstacleMovement>().baseSpeed + amplifier * speedTimer / maxSpeedTimer;
                 }
                 foreach (GameObject ast in GameObject.FindGameObjectsWithTag("Debris"))
                 {
-                    ast.GetComponent<ObstacleMovement>().speed = ast.GetComponent<ObstacleMovement>().baseSpeed * amplifier * speedTimer / maxSpeedTimer;
+                    ast.GetComponent<ObstacleMovement>().speed = ast.GetComponent<ObstacleMovement>().baseSpeed + amplifier * speedTimer / maxSpeedTimer;
                 }
             }
             else
@@ -61,6 +61,10 @@ public class SpeedEvent : Event
                     ast.GetComponent<ObstacleMovement>().speed = ast.GetComponent<ObstacleMovement>().baseSpeed;
                 }
             }
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            value = true;
         }
     }
 }

@@ -18,13 +18,12 @@ public class MenuActions : MonoBehaviour
 
     public void Tuto()
     {
-        Time.timeScale = 1;
         panelTuto.SetActive(true);
     }
 
     public void QuitTuto()
+
     {
-        Time.timeScale = 0;
         panelTuto.SetActive(false);
     }
 

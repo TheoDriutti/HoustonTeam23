@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreCounter : MonoBehaviour {
-    
+public class ScoreCounter : MonoBehaviour
+{
+
     public float score = 0;
     public int baseMultiplier;
     public int streakMultiplier = 1;
@@ -15,7 +16,8 @@ public class ScoreCounter : MonoBehaviour {
 
     public static ScoreCounter instance;
 
-    void Awake() {
+    void Awake()
+    {
         instance = this;
     }
 
@@ -28,6 +30,8 @@ public class ScoreCounter : MonoBehaviour {
 
     void Update()
     {
+        if (BeginAnimation.instance.runAnim)
+            return;
         score += streakMultiplier * baseMultiplier * Time.deltaTime;
         scoreText.text = "" + (int)score;
     }
