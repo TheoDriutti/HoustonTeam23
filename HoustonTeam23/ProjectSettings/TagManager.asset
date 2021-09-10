@@ -7,6 +7,8 @@ TagManager:
   - Rock
   - Big Rock
   - Debris
+  - Explosion
+  - Pool
   layers:
   - Default
   - TransparentFX

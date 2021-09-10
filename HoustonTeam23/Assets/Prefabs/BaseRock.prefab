@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 8679538894490775161}
   - component: {fileID: 8679538894490775164}
   - component: {fileID: 8679538894490775167}
-  - component: {fileID: 8679538894490775166}
   - component: {fileID: 8679538894490775165}
   - component: {fileID: -2281479059607405650}
+  - component: {fileID: 2620168265025861212}
   m_Layer: 0
   m_Name: BaseRock
   m_TagString: Rock
@@ -84,19 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &8679538894490775166
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8679538894490775160}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8679538894490775165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +97,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   config: {fileID: 11400000, guid: 46f026a1c0dd903448c1de3abf62302b, type: 2}
+  speed: 0
+  angularSpeed: 0
+  id: 0
+  baseSpeed: 0
 --- !u!54 &-2281479059607405650
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126,3 +117,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 4
   m_CollisionDetection: 0
+--- !u!64 &2620168265025861212
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8679538894490775160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
