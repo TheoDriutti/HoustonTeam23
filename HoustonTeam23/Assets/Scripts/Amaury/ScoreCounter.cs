@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScoreCounter : MonoBehaviour
-{
+public class ScoreCounter : MonoBehaviour {
+    
     public float score = 0;
     public int baseMultiplier;
     public int streakMultiplier = 1;
@@ -12,6 +12,12 @@ public class ScoreCounter : MonoBehaviour
 
     public Text scoreText;
     public Text feedbackText;
+
+    public static ScoreCounter instance;
+
+    void Awake() {
+        instance = this;
+    }
 
     private void Start()
     {

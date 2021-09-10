@@ -14,6 +14,9 @@ public class EventUI : MonoBehaviour
 
     public void Flash()
     {
+        if(!EventAudio.instance.malusAnnoucement.isPlaying) 
+            EventAudio.instance.malusAnnoucement.Play();
+        
         timer += Time.deltaTime;
         step += Time.deltaTime;
 

@@ -15,18 +15,21 @@ public class PlayerController : MonoBehaviour
     public VerticalEvent verticalInversion;
     public FreezeEvent freeze;
     public TapEvent tap;
+    public SpeedEvent acceleration;
+    public SpeedEvent deceleration;
 
     private float horiInput;
     private float vertiInput;
+
+    //singleton
+    private static PlayerController _i;
+    public static PlayerController i { get { return _i; } }
+
 
     public bool hurt;
     private float hurtTimer, flashingTimer;
     public float maxHurtTimer, flashingTime;
     public MeshRenderer[] spatialship;
-
-    //singleton
-    private static PlayerController _i;
-    public static PlayerController i { get { return _i; } }
 
     private void Awake()
     {
@@ -37,12 +40,33 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(BeginAnimation.instance.runAnim)
+            return;
+
         horiInput = horizontalInversion.value ? -Input.GetAxis("Horizontal") : Input.GetAxis("Horizontal");
         vertiInput = verticalInversion.value ? -Input.GetAxis("Vertical") : Input.GetAxis("Vertical");
 
-        if (tap.value)
-        {
-            if (tap.counter < tap.maxCounter) return;
+        if(acceleration.value) {
+            EventAudio.instance.acceleration.Play();
+            if(EventAudio.instance.moove_reverse.isPlaying) EventAudio.instance.moove_reverse.Stop();
+            if(EventAudio.instance.moove.isPlaying) EventAudio.instance.moove.Stop();
+            return;
+        }
+
+        if(deceleration.value) {
+            EventAudio.instance.deceleration.Play();
+            if(EventAudio.instance.moove_reverse.isPlaying) EventAudio.instance.moove_reverse.Stop();
+            if(EventAudio.instance.moove.isPlaying) EventAudio.instance.moove.Stop();
+            return;
+        }
+
+        if(horizontalInversion.value || verticalInversion.value && !EventAudio.instance.moove_reverse.isPlaying)  EventAudio.instance.moove_reverse.Play();
+        
+        else if(!EventAudio.instance.moove.isPlaying)  EventAudio.instance.moove.Play();
+        
+
+        if (tap.value) {
+            if (tap.counter < tap.maxCounter) return;          
         }
 
 

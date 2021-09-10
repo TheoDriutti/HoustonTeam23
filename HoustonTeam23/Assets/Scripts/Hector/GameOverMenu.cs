@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameOverMenu : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class GameOverMenu : MonoBehaviour
 
     public bool isPlayerDead = false;
 
+    public Text scoreText;
+
     void Update()
     {
         if (shipHealth.currentHealth == 0 && isPlayerDead == false)
@@ -17,6 +20,7 @@ public class GameOverMenu : MonoBehaviour
             gameOverPanel.SetActive(true);
             Time.timeScale = 0f;
             isPlayerDead = true;
+            scoreText.text = "" + ScoreCounter.instance.score;
         }
     }
 
