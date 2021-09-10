@@ -9,6 +9,7 @@ TagManager:
   - Debris
   - Explosion
   - Pool
+  - BlackHole
   layers:
   - Default
   - TransparentFX
