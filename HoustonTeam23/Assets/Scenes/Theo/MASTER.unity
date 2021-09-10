@@ -235,15 +235,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseRockStorage: {fileID: 1529104895}
   baseRockPrefab: {fileID: 8679538894490775160, guid: 3495684a91673894ba7add651daeeda9, type: 3}
-  baseRockSpawnCooldown: 1
-  baseRockCDVariation: 0.2
-  baseRockMaxNumberPerWave: 3
+  baseRockSpawnCooldown: 1.5
+  baseRockCDVariation: 0.3
+  baseRockMaxNumberPerWave: 10
   bigRockStorage: {fileID: 1660862062}
   bigRockPrefab: {fileID: 3677431905120185931, guid: 114991b8768954645b3afbbc5dc7be32, type: 3}
-  bigRockSpawnCooldown: 4
+  bigRockSpawnCooldown: 6
   bigRockCDVariation: 1
   debrisPrefab: {fileID: 8140939225739929644, guid: 6816491dd4bc57c41a6095103bcecfc3, type: 3}
-  debrisSpawnCooldown: 30
+  debrisSpawnCooldown: 20
   meshes:
   - {fileID: -7550879698775059255, guid: 9467add60603d3648a2594253c581612, type: 3}
   - {fileID: 8352189119156497962, guid: d0219f4bd24c7674798736c9c386713a, type: 3}
@@ -442,7 +442,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4221404222956603506, guid: 59b6c3830f511cd49afc63aea10c62f6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 59b6c3830f511cd49afc63aea10c62f6, type: 3}
@@ -612,8 +612,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.208905, y: 2.2082155, z: 0.2806368}
-  m_Center: {x: 0, y: 0.00000005960465, z: -0.000032767657}
+  m_Size: {x: 1.7130057, y: 1.7185372, z: 0.21714453}
+  m_Center: {x: 0, y: -0.14465831, z: -0.031778913}
 --- !u!114 &224955659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,10 +700,11 @@ MonoBehaviour:
   - {fileID: 1059436129}
   - {fileID: 16112988}
   - {fileID: 470660605}
+  - {fileID: 1799864546}
   currentEvent: {fileID: 0}
   spawn: 1
-  timeMin: 5
-  timeMax: 7
+  timeMin: 8
+  timeMax: 10
   manager: {fileID: 224988080}
 --- !u!114 &224988078
 MonoBehaviour:
@@ -1231,7 +1232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5367485812637081856, guid: f1dc4e5ef7f3a83439dc278c3df5b0e8, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5367485812637081859, guid: f1dc4e5ef7f3a83439dc278c3df5b0e8, type: 3}
       propertyPath: m_Pivot.x
@@ -1335,7 +1336,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5367485814483467650, guid: f1dc4e5ef7f3a83439dc278c3df5b0e8, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -680.1
+      value: -673.4
       objectReference: {fileID: 0}
     - target: {fileID: 5367485814483467650, guid: f1dc4e5ef7f3a83439dc278c3df5b0e8, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -1998,7 +1999,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   volumeAnchorOverride: {fileID: 0}
-  antialiasing: 0
+  antialiasing: 1
   SMAAQuality: 2
   dithering: 0
   stopNaNs: 0
@@ -3677,7 +3678,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baff39adb2a041e469d33096a3531999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runAnim: 0
+  runAnim: 1
   speedText: 0.05
   text: {fileID: 812489469}
   white: {fileID: 690549390}
@@ -4724,7 +4725,7 @@ MonoBehaviour:
   lastKey: 0
   keys: 7a000000710000007300000064000000
   counter: 0
-  maxCounter: 3
+  maxCounter: 2
 --- !u!1 &1813796252
 GameObject:
   m_ObjectHideFlags: 0
@@ -5070,7 +5071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7837844788721987897, guid: a8c66e4441d73ca4fab62a4d79a5a8e1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7837844788721987898, guid: a8c66e4441d73ca4fab62a4d79a5a8e1, type: 3}
       propertyPath: m_Pivot.x
@@ -5236,5 +5237,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1949b6b792a5b284589e96d248a256aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalGameSize: 32
-  verticalGameSize: {x: -9, y: 9}
+  horizontalGameSize: 25
+  verticalGameSize: {x: -7, y: 11}

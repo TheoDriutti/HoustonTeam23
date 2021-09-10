@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 45
   speedVariation: 5
-  angularSpeed: 5
+  angularSpeed: 10
   angularSpeedVariation: 1

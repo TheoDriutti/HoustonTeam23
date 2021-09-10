@@ -48,13 +48,21 @@ public class PlayerController : MonoBehaviour
         horiInput = horizontalInversion.value ? -Input.GetAxis("Horizontal") : Input.GetAxis("Horizontal");
         vertiInput = verticalInversion.value ? -Input.GetAxis("Vertical") : Input.GetAxis("Vertical");
 
-        if (acceleration.value)
+        if (acceleration.value && !EventAudio.instance.acceleration.isPlaying)
         {
             EventAudio.instance.acceleration.Play();
             if (EventAudio.instance.moove_reverse.isPlaying) EventAudio.instance.moove_reverse.Stop();
             if (EventAudio.instance.moove.isPlaying) EventAudio.instance.moove.Stop();
-            return;
+            // return;
         }
+
+        //if (deceleration.value && !EventAudio.instance.deceleration.isPlaying)
+        //{
+        //    EventAudio.instance.deceleration.Play();
+        //    if (EventAudio.instance.moove_reverse.isPlaying) EventAudio.instance.moove_reverse.Stop();
+        //    if (EventAudio.instance.moove.isPlaying) EventAudio.instance.moove.Stop();
+        //    // return;
+        //}
 
 
         if (horizontalInversion.value || verticalInversion.value && !EventAudio.instance.moove_reverse.isPlaying) EventAudio.instance.moove_reverse.Play();

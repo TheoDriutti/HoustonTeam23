@@ -17,11 +17,16 @@ public class GameOverMenu : MonoBehaviour
     {
         if (shipHealth.currentHealth == 0 && isPlayerDead == false)
         {
-            gameOverPanel.SetActive(true);
-            Time.timeScale = 0f;
-            isPlayerDead = true;
-            scoreText.text = "" + ScoreCounter.instance.score;
+            GameOver();
         }
+    }
+
+    private void GameOver()
+    {
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
+        isPlayerDead = true;
+        scoreText.text = "" + (int)ScoreCounter.instance.score;
     }
 
     public void Replay()

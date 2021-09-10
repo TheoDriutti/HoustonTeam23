@@ -123,14 +123,14 @@ public class EventCollisionSpawner : MonoBehaviour
     private void RandomEvent()
     {
         int rand = Random.Range(0, 100);
-        if (rand >= 0 && rand < 33)  // premier event 
+        if (rand >= 0 && rand < 35)  // premier event 
             currentEvent = collisionEvents[0];
-        else if (rand >= 33 && rand < 67)  // deuxieme event
+        else if (rand >= 35 && rand < 70)  // deuxieme event
             currentEvent = collisionEvents[1];
-        else if (rand >= 67)  // troisieme event
+        else if (rand >= 70 && rand < 90)  // troisieme event
             currentEvent = collisionEvents[2];
-        //else  // quatrieme event
-        //    currentEvent = collisionEvents[3];
+        else  // quatrieme event
+            currentEvent = collisionEvents[3];
     }
 
 }
