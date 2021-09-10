@@ -23,6 +23,9 @@ public class ObstacleMovement : MonoBehaviour
     // Update is called once per frame  
     void Update()
     {
+        if(BeginAnimation.instance.runAnim)
+            return;
+            
         transform.Rotate(angularSpeed * Time.deltaTime, angularSpeed * Time.deltaTime, angularSpeed * Time.deltaTime);
         transform.Translate(-Vector3.forward * speed * Time.deltaTime, Space.World);
 

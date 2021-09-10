@@ -20,6 +20,9 @@ public class EventNaturalSpawner : MonoBehaviour
 
     void Update()
     {
+        if(BeginAnimation.instance.runAnim)
+            return;
+            
         if (spawn)
         {
             //int rand = Random.Range(0, 2);

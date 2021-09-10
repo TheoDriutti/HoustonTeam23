@@ -90,4 +90,5 @@ MonoBehaviour:
   config: {fileID: 11400000, guid: 9c5a40060ebc5504597a3df0b09f3b30, type: 2}
   speed: 0
   angularSpeed: 0
+  id: 0
   baseSpeed: 0

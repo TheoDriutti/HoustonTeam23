@@ -5,40 +5,43 @@ using UnityEngine.UI;
 
 public class ScoreCounter : MonoBehaviour {
     
-    public List<int> collideObj;
+    public float score = 0;
+    public int baseMultiplier;
+    public int streakMultiplier = 1;
+    public float streakInterval;
 
-    public float score;
-    public int dodge;
+    public Text scoreText;
+    public Text feedbackText;
 
     public static ScoreCounter instance;
 
-    public Text text;
-
-    
-    public int timerScorePerMiliSecond;
-
-    void Start() {
-        collideObj = new List<int>();
+    void Awake() {
         instance = this;
     }
 
-
-    void Update() {
-
-        foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Pool")) {
-            for(int i = 0;i < obj.transform.childCount;i++) {
-                float distance = obj.transform.GetChild(i).position.z - transform.position.z;
-
-                if(distance < 0 && !collideObj.Contains(obj.GetComponent<ObstacleMovement>().id)) {
-                    dodge++;
-                    collideObj.Remove(obj.GetComponent<ObstacleMovement>().id);
-                }
-            }
-        }
-
-        score += Time.deltaTime  * timerScorePerMiliSecond;
-        score += dodge;
-
-        text.text = "Score: " + (int)score;
+    private void Start()
+    {
+        score = 0;
+        streakMultiplier = 1;
+        scoreText.text = "0";
     }
+
+    void Update()
+    {
+        score += streakMultiplier * baseMultiplier * Time.deltaTime;
+        scoreText.text = "" + (int)score;
+    }
+
+    public void UpdateFeedback()
+    {
+        if (streakMultiplier > 1)
+        {
+            feedbackText.text = "x" + streakMultiplier;
+        }
+        else
+        {
+            feedbackText.text = "";
+        }
+    }
+
 }
